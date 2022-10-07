@@ -18,10 +18,13 @@ const AddStudent = () => {
         e.preventDefault();
 
         const student = { name, email, password, grade, group, age, gender, school_year };
-        axios.defaults.headers.common = {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': window.csrf_token,
-        };
+        axios.defaults.xsrfCookieName = "csrftoken";
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        // axios.defaults.headers.common = {
+        //     'X-Requested-With': 'HttpRequest',
+        //     'X-CSRF-TOKEN': window.csrf_token,
+        // };
+        
         axios.defaults.withCredentials = true;
         await axios.post('http://localhost:8000/api/student', student).then(res => {
             if (res.data.status === 200) {
@@ -43,9 +46,9 @@ const AddStudent = () => {
 
        
     return(
-        <div>
+        <div style={{marginLeft: 20+"px"}}>
             <h1>
-               ADD STUDENT
+               Ajouter un etudiant
             </h1>
 
             <form onSubmit={ handleSubmit }>
@@ -57,7 +60,7 @@ const AddStudent = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     type="text"/>
-
+<br/>
 <label htmlFor="email">Email: </label><br/>
                 <input 
                     id="email" 
@@ -66,7 +69,7 @@ const AddStudent = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="text"/>
-
+<br/>
 <label htmlFor="gender">Gender: </label><br/>
                 <input 
                     id="gender" 
@@ -75,7 +78,7 @@ const AddStudent = () => {
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     type="text"/>
-
+<br/>
 <label htmlFor="age">Age: </label><br/>
                 <input 
                     id="age" 
@@ -84,35 +87,35 @@ const AddStudent = () => {
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
                     type="number"/>
-
+<br/>
 <label htmlFor="grade">Grade: </label><br/>
                 <input 
                     id="grade" 
                     name="grade" 
                     value={grade}
                     onChange={(e) => setGrade(e.target.value)}
-                    type="text"/>
+                    type="text"/><br/>
 <label htmlFor="group">Group: </label><br/>
                 <input 
                     id="group" 
                     name="group" 
                     value={group}
                     onChange={(e) => setGroup(e.target.value)}
-                    type="text"/>
+                    type="text"/><br/>
  <label htmlFor="school_year">School year: </label><br/>
                 <input 
                     id="school_year" 
                     name="school_year" 
                     value={school_year}
                     onChange={(e) => setSchool_year(e.target.value)}
-                    type="text"/>
+                    type="text"/><br/>
  <label htmlFor="password">Password: </label><br/>
                 <input 
                     id="password" 
                     name="password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    type="text"/>
+                    type="text"/><br/>
                 <button type="submit" >Submit</button>
             </form>
             <h3>
