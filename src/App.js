@@ -1,9 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
 
-import Student from "./Student/ListStudent";
-import AddStudent from "./Student/AddStudent";
-import Dashboard from "./Student/Dashboard";
+import Student from "./components/Student/ListStudent";
+import AddStudent from "./components/Student/AddStudent";
+import Header from './components/Dashboard/Header';
+
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
           {/* Route for students and marks*/}
             <Route path='/' element={<Student/>} />
             <Route path="/addStudent" element={<AddStudent/>}/>
-            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/dashboard" element={<Header/>}/>
             
           {/* Route for  modules*/}
 

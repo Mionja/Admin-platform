@@ -18,30 +18,38 @@ const AddStudent = () => {
         e.preventDefault();
 
         const student = { name, email, password, grade, group, age, gender, school_year };
-        axios.defaults.xsrfCookieName = "csrftoken";
-        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        console.log(student);
+        // axios.defaults.xsrfCookieName = "csrftoken";
+        // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
         // axios.defaults.headers.common = {
         //     'X-Requested-With': 'HttpRequest',
         //     'X-CSRF-TOKEN': window.csrf_token,
         // };
         
-        axios.defaults.withCredentials = true;
-        await axios.post('http://localhost:8000/api/student', student).then(res => {
-            if (res.data.status === 200) {
-                console.log('student added successfully');
-            }
-        })
+        // axios.defaults.withCredentials = true;
+        // await axios.post('http://localhost:8000/api/student', student).then(res => {
+        //     if (res.data.status === 200) {
+        //         console.log('student added successfully');
+        //     }
+        // })
         // setTimeout(()=>{
-        // fetch('http://localhost:8000/api/student', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(student)
-        // }).then(() => {
-        //     console.log('new student added');
-        //     // history.push('/')
-        //     })
+        await fetch(' http://localhost:8000/api/student', {
+            method: 'POST',
+            headers: { "Accept": "application/json",
+                       "Content-Type": "application/json",
+                     },
+            xsrfCookieName: "csrftoken",
+            xsrfHeaderName: "X-CSRFTOKEN",
+            body: JSON.stringify(student)
+        })
+        .then(() => {
+            console.log('new student added');
+            // history.push('/')
+        })
+        .catch(error=>{setState({errorMessage:error.toString() });
+        console.error('There was an error', error)
+        })
         // },3000) 
-        console.log(student);
     }
 
        
