@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <>
-    <a href='/' className="btn btn-dark mt-2 ml-2">Back<i className="fas fa-arrow-circle-right" /></a>
+        <a href="/student">Student</a>
        <div className="row ml-1 mt-3">
                 <div className="col-1"></div>
                 <div className="col-lg-3 col-6">

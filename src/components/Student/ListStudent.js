@@ -49,7 +49,7 @@ else if (gender !== '') {
             <h2 className="text-center">LISTE DES ETUDIANT EN L1 </h2>
                
                 <h3 className="mb-2">
-                    <Link to={'dashboard'}>Dashboard</Link>
+                    <Link to={'/'}>Dashboard</Link>
                 </h3>
             </div>
 
@@ -80,7 +80,7 @@ else if (gender !== '') {
                 <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
                 <thead>
                     <tr className="mt-2 mb-3" style={{float:"right"}}>
-                        <Link to={'addStudent'} className="text-primary">+ Ajouter un etudiant</Link>
+                        <Link to={'/addStudent'} className="text-primary">+ Ajouter un etudiant</Link>
                     </tr>
                 </thead>    
                 <tbody>

@@ -19,6 +19,16 @@ const AddStudent = () => {
 
         const student = { name, email, password, grade, group, age, gender, school_year };
         console.log(student);
+
+        const res = await axios({
+            method: 'POST',
+            url: "http://127.0.0.1:8000/api/student",
+            data: student,
+          })
+        if (res.data.status === 200 ){
+          console.log(res.data.status);
+          alert("Un etudiant est ajouté");
+        }        
         // axios.defaults.xsrfCookieName = "csrftoken";
         // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
         // axios.defaults.headers.common = {
@@ -33,23 +43,23 @@ const AddStudent = () => {
         //     }
         // })
         // setTimeout(()=>{
-        await fetch(' http://localhost:8000/api/student', {
-            method: 'POST',
-            headers: { "Accept": "application/json",
-                       "Content-Type": "application/json",
-                     },
-            xsrfCookieName: "csrftoken",
-            xsrfHeaderName: "X-CSRFTOKEN",
-            body: JSON.stringify(student)
-        })
-        .then(() => {
-            console.log('new student added');
-            // history.push('/')
-        })
-        .catch(error=>{setState({errorMessage:error.toString() });
-        console.error('There was an error', error)
-        })
-        // },3000) 
+        // await fetch(' http://localhost:8000/api/student', {
+        //     method: 'POST',
+        //     headers: { "Accept": "application/json",
+        //                "Content-Type": "application/json",
+        //              },
+        //     xsrfCookieName: "csrftoken",
+        //     xsrfHeaderName: "X-CSRFTOKEN",
+        //     body: JSON.stringify(student)
+        // })
+        // .then(() => {
+        //     console.log('new student added');
+        //     // history.push('/')
+        // })
+        // .catch(error=>{setState({errorMessage:error.toString() });
+        // console.error('There was an error', error)
+        // })
+        // // },3000) 
     }
 
        

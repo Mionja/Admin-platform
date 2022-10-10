@@ -10,12 +10,12 @@ export default function App() {
   return (
     <Router>
       <div>
+
         <Routes>
           {/* Route for students and marks*/}
-            <Route path='/' element={<Student/>} />
-            <Route path="/addStudent" element={<AddStudent/>}/>
-            <Route path="/dashboard" element={<Header/>}/>
-            
+            <Route path="/" element={<Header/>}/>
+            <Route path='/student' element={<Student/>} />
+            <Route path="/addStudent" element={<AddStudent/>}/>            
           {/* Route for  modules*/}
 
           {/* Route for teachers */}

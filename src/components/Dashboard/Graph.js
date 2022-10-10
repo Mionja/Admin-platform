@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 import {
     Chart as ChartJS,
@@ -25,17 +26,22 @@ ChartJS.register(
 function Graph(props) {
     let[year, setYear] = useState(2022);
 
-    const [ComparisonPerYear, setComparisonPerYear] = useState({
+    let [moyenneGeneral2022, setMoyenneGeneral2022] = useState(0);
+    let [moyenneGeneral2021, setMoyenneGeneral2021] = useState(0);
+    let [nombre2022, setNombre2022] = useState(0);
+    let [nombre2021, setNombre2021] = useState(0);
+
+    let [ComparisonPerYear, setComparisonPerYear] = useState({
         datasets: [],
     });
 
-    const [NombreEtudiants, setNombreEtudiants] = useState({
+    let [NombreEtudiants, setNombreEtudiants] = useState({
         datasets: [],
     });
 
-    const [chartOptions, setChartOptions] = useState({});
+    let [chartOptions, setChartOptions] = useState({});
 
-    const Previous = ()=>{
+    let Previous = ()=>{
         if (year !==  2018) {
             setYear(year-1)   
         }
@@ -44,7 +50,7 @@ function Graph(props) {
         }
     }
 
-    const Next = ()=>{
+    let Next = ()=>{
         if (year <  2022) {
             setYear(year+1)   
         }
@@ -59,7 +65,7 @@ function Graph(props) {
             datasets: [
                 {
                     label: "Moyenne generale",   
-                    data: [12, 15, 10, 13],
+                    data: [12, 15, moyenneGeneral2021, moyenneGeneral2022],
                 },
             
             ],
@@ -70,7 +76,7 @@ function Graph(props) {
             datasets: [
                 {
                     label: "Nombre d'etudiants",   
-                    data: [40, 70, 77, 90],
+                    data: [4, 3, nombre2022.length,nombre2022.length ],
                 },
             
             ],
@@ -88,8 +94,15 @@ function Graph(props) {
                 },
             },
         });    
-        
-    })
+
+        axios.all(
+            [axios.get (`http://localhost:8000/api/student/general/average_point/${props.grade}/2022`).then((res)=>{setMoyenneGeneral2022(res.data)   }),
+             axios.get (`http://localhost:8000/api/student/general/average_point/${props.grade}/2021`).then((res)=>{setMoyenneGeneral2021(res.data)   }),
+             axios.get (`http://localhost:8000/api/student/list/${props.grade}/2022`).then((res)=>{setNombre2022(res.data)   }),
+             axios.get (`http://localhost:8000/api/student/list/${props.grade}/2021`).then((res)=>{setNombre2021(res.data)   }),
+            ]
+        )}, [props.grade]);
+  
 
   return (
     <div>

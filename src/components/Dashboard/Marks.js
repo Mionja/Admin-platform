@@ -26,29 +26,68 @@ import {
 function Marks(props) {
 
     
-    const [data,setData] = useState ([]);
-
-    const [Moyenne, setMoyenne] = useState({
+    let [data,setData] = useState ([]);
+   
+    let [Moyenne, setMoyenne] = useState({
         datasets: [],
     });
 
-    const [MoyenneGenre, setMoyenneGenre] = useState({
+    let [MoyenneGenre, setMoyenneGenre] = useState({
         datasets: [],
     });
 
-    const [PasMoyenneGenre, setPasMoyenneGenre] = useState({
+    let [PasMoyenneGenre, setPasMoyenneGenre] = useState({
         datasets: [],
     });
 
-    const [Participation, setParticipation] = useState({
+    let [Participation, setParticipation] = useState({
         datasets: [],
     });
   
-    const [chartOptions, setChartOptions] = useState({});
+    let [chartOptions, setChartOptions] = useState({});
     var sup10 = data;
     var inf10 = data;
     sup10 = data.filter(data => ( data.data.average_point >= 10));
     inf10 = data.filter(data => ( data.data.average_point < 10));
+    let nbr_moyenne = 0
+    let nbr_pasmoyenne = 0
+    let nbrFilleMoyenne = 0;
+    let nbrGarconMoyenne = 0;
+    let nbrFillePasMoyenne = 0;
+    let nbrGarconPasMoyenne = 0;
+    let nbrParticipation  = 0;
+    let nbrNonParticipation = 0;
+    const test = data;
+    test.forEach(data => {
+        console.log(data.data);
+        if (data.data.average_point >= 10) {
+            nbr_moyenne++
+            nbrParticipation++
+
+            if (data.data.student.gender == 'F') {
+                nbrFilleMoyenne++
+            }
+            else if (data.data.student.gender == 'M') {
+                nbrGarconMoyenne++
+            }
+        }
+        else{
+            nbr_pasmoyenne++
+            nbrParticipation++
+
+            if (data.data.student.gender == 'F') {
+                nbrFillePasMoyenne++
+            }
+            else if (data.data.student.gender == 'M') {
+                nbrGarconPasMoyenne++
+            }
+
+            if (data.data.average_point === 0) {
+                nbrNonParticipation++
+            }
+        }
+        }); 
+    
 
     useEffect(() => {
         setParticipation({
@@ -56,7 +95,7 @@ function Marks(props) {
             datasets: [
                 {
                     label: "Liste de participation des etudiants",
-                    data: [80, 20],
+                    data: [nbrParticipation, nbrNonParticipation],
                     backgroundColor: ["cyan","red"],
                 },
                
@@ -68,7 +107,7 @@ function Marks(props) {
             datasets: [
                 {
                     label: "Liste de ceux qui ont la moyenne parmis ceux qui ont participé",
-                    data: [50, 30],
+                    data: [nbr_moyenne, nbr_pasmoyenne],
                     backgroundColor: ["cyan","red"],
                 },
                
@@ -80,7 +119,7 @@ function Marks(props) {
             datasets: [
                 {
                     label: "Ceux qui ont eu la moyenne",
-                    data: [50, 30],
+                    data: [nbrFilleMoyenne, nbrGarconMoyenne],
                     borderColor: ["green","red"],
                     backgroundCololr: ["red","green"],
                 },
@@ -93,7 +132,7 @@ function Marks(props) {
             datasets: [
                 {
                     label: "Ceux qui n'ont pas eu la moyenne",
-                    data: [10, 20],
+                    data: [nbrFillePasMoyenne, nbrGarconPasMoyenne],
                     borderColor: ["green","red"],
                     backgroundCololr: ["red","yellow"],
                 },
@@ -115,7 +154,7 @@ function Marks(props) {
         });    
         
         axios.all(
-            [axios.get (`http://localhost:8000/api/student/average_point/${props.grade}/${props.year}`).then((res)=>{setData(res.data)   }),
+            [axios.get (`http://localhost:8000/api/student/average_point/${props.grade}/${props.year}`).then((res)=>{setData(res.data)   }),            
             ]
         )
     }, [props.grade, props.year]);
@@ -143,111 +182,66 @@ function Marks(props) {
 
     {/* List of students with their average points and retake module */}
         <div className='mt-4'>
-                <div>
-                    <b className='ml-3' style={{color: 'black'}}>
-                        Liste des etudiants qui ont eu la moyenne (par ordre de mérite) :
-
-                                <span className='float:right ml-5'>
-                                    <select
-                                    // value={group}
-                                    // onChange={(e) => setGroup(e.target.value)}
-                                    >
-                                    <option value="">--Group--</option>    
-                                    <option value="G1">Group 1</option>
-                                    <option value="G2">Group 2</option>
-                                    </select>
-
-                                    <select
-                                    // value={gender}
-                                    // onChange={(e) => setGender(e.target.value)}
-                                    >
-                                    <option value="">--Gender--</option>
-                                    <option value="F">Fille</option>
-                                    <option value="M">Garçon</option>
-                                
-                                    </select>
-                                </span>     
-                    </b>
-
-                    <table class="table table-hover mt-3">
-                        <thead>
-                            <tr>
-                                <th className='text-center'>Nom</th>
-                                <th className='text-center'>Email</th>
-                                <th className='text-center'>Sexe</th>
-                                <th className='text-center'>Groupe</th>
-                                <th className='text-center'>Moyenne</th>
-                                <th className='text-center'>Module(s) à rattraper </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {sup10.map((data)=>{
-                        return(
-                            <tr key={data.data.student.id}>
-                                <td className='text-center'>{data.data.student.name}</td>
-                                <td className='text-center'>{data.data.student.email}</td>
-                                <td className='text-center'>{data.data.student.gender}</td>
-                                <td className='text-center'>{data.data.group}</td>
-                                <td className='text-center'>{data.data.average_point}</td>
-                                <td className='text-center'>-{data.data.retake_module}</td>
-                            </tr>)
-                        })}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div className='mt-5'>
-                <b  className='ml-3' style={{color: 'black'}}>Liste des etudiants qui n'ont pas eu la moyenne (avec tous les modules à rattraper)
-                            <span className='float:right ml-5'>
-                                <select
-                                // value={group}
-                                // onChange={(e) => setGroup(e.target.value)}
-                                >
-                                <option value="">--Group--</option>    
-                                <option value="G1">Group 1</option>
-                                <option value="G2">Group 2</option>
-                                </select>
-
-                                <select
-                                // value={gender}
-                                // onChange={(e) => setGender(e.target.value)}
-                                >
-                                <option value="">--Gender--</option>
-                                <option value="F">Fille</option>
-                                <option value="M">Garçon</option>
-                            
-                                </select>
-                            </span>     
+            <div>
+                <b className='ml-3' style={{color: 'black'}}>
+                    Liste des etudiants qui ont eu la moyenne:
                 </b>
-                    <code style={{color: 'red'}}>
-                    <table className="table table-hover mt-3">
-                        <thead className='text-dark'>
-                            <tr>
-                            <th className='text-center'>Nom</th>
-                                <th className='text-center'>Email</th>
-                                <th className='text-center'>Sexe</th>
-                                <th className='text-center'>Groupe</th>
-                                <th className='text-center'>Moyenne</th>
-                                <th className='text-center'>Module(s) à rattraper </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {inf10.map((data)=>{
-                        return(
-                            <tr key={data.data.student.id}>
-                                <td className='text-center'>{data.data.student.name}</td>
-                                <td className='text-center'>{data.data.student.email}</td>
-                                <td className='text-center'>{data.data.student.gender}</td>
-                                <td className='text-center'>{data.data.group}</td>
-                                <td className='text-center'>{data.data.average_point}</td>
-                                <td className='text-center'>-{data.data.retake_module}</td>
-                            </tr>)
-                        })}
-                        </tbody>
-                    </table>
 
-                    </code>
-                </div>
+                <table class="table table-hover mt-3">
+                    <thead>
+                        <tr>
+                            <th className='text-center'>Nom</th>
+                            <th className='text-center'>Email</th>
+                            <th className='text-center'>Sexe</th>
+                            <th className='text-center'>Groupe</th>
+                            <th className='text-center'>Moyenne</th>
+                            <th className='text-center'>Module(s) à rattraper </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {sup10.map((data)=>{
+                    return(
+                        <tr key={data.data.student.id}>
+                            <td className='text-center'>{data.data.student.name}</td>
+                            <td className='text-center'>{data.data.student.email}</td>
+                            <td className='text-center'>{data.data.student.gender}</td>
+                            <td className='text-center'>{data.data.group}</td>
+                            <td className='text-center'>{data.data.average_point}</td>
+                            <td className='text-center'>-{data.data.retake_module}</td>
+                        </tr>)
+                    })}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className='mt-5'>
+            <b  className='ml-3' style={{color: 'black'}}>Liste des etudiants qui n'ont pas eu la moyenne :</b>
+                <table className="table table-hover mt-3">
+                    <thead className='text-dark'>
+                        <tr>
+                        <th className='text-center'>Nom</th>
+                            <th className='text-center'>Email</th>
+                            <th className='text-center'>Sexe</th>
+                            <th className='text-center'>Groupe</th>
+                            <th className='text-center'>Moyenne</th>
+                            <th className='text-center'>Module(s) à rattraper </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {inf10.map((data)=>{
+                    return(
+                        <tr key={data.data.student.id}>
+                            <td className='text-center'>{data.data.student.name}</td>
+                            <td className='text-center'>{data.data.student.email}</td>
+                            <td className='text-center'>{data.data.student.gender}</td>
+                            <td className='text-center'>{data.data.group}</td>
+                            <td className='text-center'><code style={{color: 'red'}}>{data.data.average_point}</code></td>
+                            <td className='text-center'>-{data.data.retake_module}</td>
+                        </tr>)
+                    })}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
