@@ -42,7 +42,7 @@ function Graph(props) {
     let [chartOptions, setChartOptions] = useState({});
 
     let Previous = ()=>{
-        if (year !==  2018) {
+        if (year !==  2019) {
             setYear(year-1)   
         }
         else{
@@ -76,7 +76,7 @@ function Graph(props) {
             datasets: [
                 {
                     label: "Nombre d'etudiants",   
-                    data: [4, 3, nombre2022.length,nombre2022.length ],
+                    data: [4, 3, nombre2021.length,nombre2022.length ],
                 },
             
             ],
@@ -126,9 +126,9 @@ function Graph(props) {
                         <li class="page-item"><a class="page-link" href="#"
                         onClick={Previous}>Previous</a></li>
                         <li class="page-item"><a class="page-link" href="#"
-                        onClick={() => setYear(2018)}>2018</a></li>
-                        <li class="page-item"><a class="page-link" href="#"
                         onClick={() => setYear(2019)}>2019</a></li>
+                        <li class="page-item"><a class="page-link" href="#"
+                        onClick={() => setYear(2020)}>2020</a></li>
                         <li class="page-item"><a class="page-link" href="#"
                         onClick={() => setYear(2021)}>2021</a></li>
                         <li class="page-item active"><a class="page-link" href="#"

@@ -137,7 +137,7 @@ const AddStudent = () => {
                 <button type="submit" >Submit</button>
             </form>
             <h3>
-                <Link to={'/'}>Back</Link>
+                <Link to={'/student'}>Back</Link>
             </h3>
         </div>
     );

@@ -7,7 +7,6 @@ function Student ()
 {
 
  const [data,setData] = useState ([]);
- const [module,setModule] = useState ([]);
  const [group,setGroup] = useState ("");
  const [gender,setGender] = useState ("");
  
@@ -23,7 +22,6 @@ function Student ()
         else{
             axios.all(
                 [axios.get (`http://localhost:8000/api/student/list/${grade}/${school_year}`).then((res)=>{setData(res.data)   }),
-                 axios.get (`http://localhost:8000/api/module`).then((res)=>{setModule(res.data)   })       
                 ]
             )
         }
@@ -47,7 +45,6 @@ else if (gender !== '') {
         <div>
             <div>
             <h2 className="text-center">LISTE DES ETUDIANT EN L1 </h2>
-               
                 <h3 className="mb-2">
                     <Link to={'/'}>Dashboard</Link>
                 </h3>
@@ -95,45 +92,25 @@ else if (gender !== '') {
                     {Fdata.map((students)=>{
                     return(
                     <tr key={students.student.id}>
-                    <td>{students.student.name}</td>
+                    <td>
+                        <Link to={`/detailStudent/${students.student.id}`} >
+                            {students.student.name}
+                        </Link>
+                    </td>
                     <td>{students.student.email}</td>
                     <td>{students.student.age}</td>
                     <td>{students.student.gender}</td>
                     <td>{students.group}</td>
-                    <td><button className="btn btn-sm btn-warning">Edit</button></td>
+                    <td>
+                        <Link to={`/editStudent/${students.student.id}`} className="btn btn-sm btn-warning">Edit</Link>
+                    </td>
                     <td><button className="btn btn-sm btn-danger">Delete</button></td>
                     </tr>)
                 })}
                 </tbody>
                 </table>
 
-                <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
-                <thead>
-                    <tr className="mt-2 mb-3" style={{float:"right"}}>
-                        <Link to={'addStudent'} className="text-primary">+ Ajouter un etudiant</Link>
-                    </tr>
-                </thead>    
-                <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>email</td>
-                        <td>age</td>
-                        <td>gender</td>
-                        <td>group</td>
-                        <td colSpan={2}></td>
-                    </tr>
-                    {module.map((data)=>{
-                    return(
-                    <tr key={data.module.id}>
-                    <td>{data.module.name}</td>
-                    <td>{data.module.code}</td>
-                    <td>{data.module.hour}</td>
-                    <td><button className="btn btn-sm btn-warning">Edit</button></td>
-                    <td><button className="btn btn-sm btn-danger">Delete</button></td>
-                    </tr>)
-                })}
-                </tbody>
-                </table>
+                
             </div>
         </div>
     );
