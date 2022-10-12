@@ -56,22 +56,25 @@ function Header() {
                         >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
                     </div>
                 </div>
+        </div>
 
-                <div className="col-lg-3 col-6">
-                    <div className="small-box" style={{backgroundColor: "rgb(175, 84, 89)"}}>
-                        <div className="inner">
-                        <h3>M1</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <div className="icon">
-                        <i className="ion ion-person-add" />
-                        </div>
-                        <a href="#" className="small-box-footer"
-                        onClick={() => setGrade('M1')}
-                        >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
+        <div className='row'>
+            <div className='col-2 mr-5'></div>
+            <div className=" col-3">
+                <div className="small-box" style={{backgroundColor: "rgb(175, 84, 89)"}}>
+                    <div className="inner">
+                    <h3>M1</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
                     </div>
+                    <div className="icon">
+                    <i className="ion ion-person-add" />
+                    </div>
+                    <a href="#" className="small-box-footer"
+                    onClick={() => setGrade('M1')}
+                    >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
                 </div>
-                <div className="col-lg-3 col-6">
+            </div>
+            <div className=" col-3">
                     <div className="small-box bg-warning">
                         <div className="inner">
                         <h3>M2</h3>
@@ -84,7 +87,7 @@ function Header() {
                         onClick={() => setGrade('M2')}
                         >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
                     </div>
-                </div>
+            </div>
         </div>
 
         <Graph grade={grade} />

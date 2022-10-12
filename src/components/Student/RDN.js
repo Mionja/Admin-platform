@@ -1,47 +1,47 @@
 import React , {useState,useEffect} from "react"
 import axios from 'axios'
-
+import MarksList from "./MarksList";
 
 function RDN(props) {
 
     let [data, setData] = useState([]);
 
-    useEffect(()=>{
-        // axios.get (`http://localhost:8000/api/student/all-marks/${props.year}/${props.id}`).then((res)=>{setData(res.data)   })
-    // }, [props.year]);
-        fetch(`http://localhost:8000/api/student/all-marks/${props.year}/${props.id}`).then((res)=>{
-            return res.json()
-        }).then((data)=>{
-        console.log(data)
-        setData(data)
+    const onButtonClick = () => {
+        // using Java Script method to get PDF file
+        fetch('SamplePDF.pdf').then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = 'SamplePDF.pdf';
+                alink.click();
+            })
         })
-    },[]);
+      };
+    
+    let [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/student/all-marks/${props.year}/${props.id}`)
+        .then( res => {
+            console.log(res.data);
+            setTimeout(() => {
+              setData(res.data);
+              setIsLoading(false);
+            }, 3000);
+        })
+    }, [props.year, props.id])
 
   return (
     <div>
       <h3>Relevé de note de l'etudiant {props.id} pendant l'année scolaire {props.year - 1}-{props.year}</h3>
-      <table className="table table-hover">
-        <thead>
-            <th>Code</th>
-            <th>Module</th>
-            <th>Score</th>
-            <th>Semestre</th>
-        </thead>
-        <tbody>
-            {
-                data.forEach(data => {
-                    <tr>
-                        <td>Test</td>
-                    </tr>
-                    // <tr key={data.marks.id}>
-                    //     <td>{data.marks.score}</td>
-                    //     <td>Test</td>
-                    // </tr> 
-                })
-            }
-        </tbody>
-      </table>
+      
+        { (isLoading) ? <p className="mt-5 ml-5 text-warning">Loading...</p> :""}
+        {data && <MarksList data={data} />}
+       
+      <button onClick={onButtonClick}> Export to pdf</button>  
     </div>
   )
 }
