@@ -1,14 +1,14 @@
 import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import '../../assets/admin/css/styles.css';
+import './../assets/admin/css/styles.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
-import '../../assets/admin/js/scripts';
+import './../assets/admin/js/scripts';
 
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 
-import routes from '../../routes/routes';
+import routes from '../../App';
 
 const MasterLayout = () => {
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {useState,useEffect} from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function   Table (){
     const [data,setData] = useState ([]);
@@ -14,6 +14,9 @@ function   Table (){
     return (
         <div>
             <h1 align = 'centre'>Les listes des Professeurs</h1>
+            <Link to={'/addTeacher'}>
+                <button className="btn btn-info float-right mr-5">Ajouter un Professeurs</button>
+            </Link>
             <table class="table table-striped">
             <thead class="thead-dark">
             <tr>

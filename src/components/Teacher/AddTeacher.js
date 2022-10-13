@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import '../../../assets/admin/css/util.css';
-import '../../../assets/admin/css/main.css';
+// import Swal from 'sweetalert2';
+import './../../assets/admin/css/util.css';
+import './../../assets/admin/css/main.css';
 //import { link } from 'react-router-dom';
 //import { useHistory } from 'react-router';
 
@@ -29,13 +29,14 @@ function Professeurs() {
         })
         if (res.status === 200) {
           //console.log(res);
-          Swal.fire({
-            icon: 'success',
-            title: 'Professeur Ajouter avec Succes',
-            showConfirmButton: true,
-          })
+          // Swal.fire({
+          //   icon: 'success',
+          //   title: 'Professeur Ajouter avec Succes',
+          //   showConfirmButton: true,
+          // })
+          alert("Proffesseur ajouter avec succes");
         }
-          //alert("Etudiant Ajouter avec Succes");
+          
      
 }
 

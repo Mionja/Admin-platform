@@ -1,70 +1,71 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 function EditCategory(props) 
 {
-    const history = useHistory();
-    const [loading, setLoading] = useState(true);
-    const [categoryInput, setCategory] = useState([]);
-    const [error, setError] = useState([]);
+    // const history = useNavigate();
+    // const [loading, setLoading] = useState(true);
+    // const [categoryInput, setCategory] = useState([]);
+    // const [error, setError] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const category_id = props.match.params.id;
-        axios.get(`/api/edit-category/${category_id}`).then(res=>{
-            if(res.data.status === 200)
-            {
-                setCategory(res.data.category);
-            }
-            else if(res.data.status === 404)
-            {
-                swal("Error",res.data.message,"error");
-                history.push('/admin/view-category');
-            }
-            setLoading(false);
-        });
+    //     const category_id = props.match.params.id;
+    //     axios.get(`/api/edit-category/${category_id}`).then(res=>{
+    //         if(res.data.status === 200)
+    //         {
+    //             setCategory(res.data.category);
+    //         }
+    //         else if(res.data.status === 404)
+    //         {
+    //             swal("Error",res.data.message,"error");
+    //             history.push('/admin/view-category');
+    //         }
+    //         setLoading(false);
+    //     });
 
-    }, [props.match.params.id, history]);
+    // }, [props.match.params.id, history]);
 
-    const handleInput = (e) => {
-        e.persist();
-        setCategory({...categoryInput, [e.target.name]: e.target.value });
-    }
+    // const handleInput = (e) => {
+    //     e.persist();
+    //     setCategory({...categoryInput, [e.target.name]: e.target.value });
+    // }
 
-    const updateCategory = (e) => {
-        e.preventDefault();
+    // const updateCategory = (e) => {
+    //     e.preventDefault();
         
-        const category_id = props.match.params.id;
-        const data = categoryInput;
-        axios.put(`/api/update-category/${category_id}`, data).then(res=>{
-            if(res.data.status === 200)
-            {
-                swal("Success",res.data.message,"success");
-                setError([]);
-            }
-            else if(res.data.status === 422)
-            {
-                swal("All fields are mandetory","","error");
-                setError(res.data.errors);
-            }
-            else if(res.data.status === 404)
-            {
-                swal("Error",res.data.message,"error");
-                history.push('admin/view-category');
-            }
-        });
-    }
+    //     const category_id = props.match.params.id;
+    //     const data = categoryInput;
+    //     axios.put(`/api/update-category/${category_id}`, data).then(res=>{
+    //         if(res.data.status === 200)
+    //         {
+    //             swal("Success",res.data.message,"success");
+    //             setError([]);
+    //         }
+    //         else if(res.data.status === 422)
+    //         {
+    //             swal("All fields are mandetory","","error");
+    //             setError(res.data.errors);
+    //         }
+    //         else if(res.data.status === 404)
+    //         {
+    //             swal("Error",res.data.message,"error");
+    //             history.push('admin/view-category');
+    //         }
+    //     });
+    // }
 
-    if(loading)
-    {
-        return <h4>Ajout des professeurs...</h4>
-    }
+    // if(loading)
+    // {
+    //     return <h4>Ajout des professeurs...</h4>
+    // }
 
     return (
         <div className="container px-4">
-            <div className="card mt-4">
+            <h1>Test edit proffesseur</h1>
+            {/* <div className="card mt-4">
                 <div className="card-header">
                     <h4>Edit Category 
                         <Link to="/admin/view-category" className="btn btn-primary btn-sm float-end">BACK</Link>
@@ -126,7 +127,7 @@ function EditCategory(props)
                     </form>
 
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

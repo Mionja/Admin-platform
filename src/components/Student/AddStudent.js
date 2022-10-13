@@ -64,81 +64,125 @@ const AddStudent = () => {
 
        
     return(
-        <div style={{marginLeft: 20+"px"}}>
-            <h1>
-               Ajouter un etudiant
-            </h1>
+<div className="limiter">
 
-            <form onSubmit={ handleSubmit }>
-                <label htmlFor="name">Name: </label><br/>
-                <input 
-                    id="name" 
-                    name="name" 
-                    required 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    type="text"/>
-<br/>
-<label htmlFor="email">Email: </label><br/>
-                <input 
-                    id="email" 
-                    name="email" 
-                    required 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="text"/>
-<br/>
-<label htmlFor="gender">Gender: </label><br/>
-                <input 
-                    id="gender" 
-                    name="gender" 
-                    required 
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                    type="text"/>
-<br/>
-<label htmlFor="age">Age: </label><br/>
-                <input 
+		<div className="container-login100" >
+			<div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+
+				<form className="login100-form validate-form"  onSubmit={handleSubmit}>
+					<span className="login100-form-title p-b-49">
+						Ajout d'un étudiant
+					</span>
+
+					<div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Nom </span>
+						<input className="input100" 
+                  type="text"
+                  name="name"
+                  value = {name}
+                  onChange={(e) => setName(e.target.value)}
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Email </span>
+						<input className="input100" 
+                  type='text'
+                  id="email" 
+                  name="email" 
+                  required 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Genre </span>
+						<input className="input100" 
+                   id="gender" 
+                   name="gender" 
+                   required 
+                   value={gender}
+                   onChange={(e) => setGender(e.target.value)}
+                   type="text"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Age </span>
+						<input className="input100" 
                     id="age" 
                     name="age" 
                     required 
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
-                    type="number"/>
-<br/>
-<label htmlFor="grade">Grade: </label><br/>
-                <input 
-                    id="grade" 
-                    name="grade" 
-                    value={grade}
-                    onChange={(e) => setGrade(e.target.value)}
-                    type="text"/><br/>
-<label htmlFor="group">Group: </label><br/>
-                <input 
-                    id="group" 
-                    name="group" 
-                    value={group}
-                    onChange={(e) => setGroup(e.target.value)}
-                    type="text"/><br/>
- <label htmlFor="school_year">School year: </label><br/>
-                <input 
-                    id="school_year" 
-                    name="school_year" 
-                    value={school_year}
-                    onChange={(e) => setSchool_year(e.target.value)}
-                    type="text"/><br/>
- <label htmlFor="password">Password: </label><br/>
-                <input 
-                    id="password" 
-                    name="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="text"/><br/>
-                <button type="submit" >Submit</button>
-            </form>
-            <h3>
-                <Link to={'/student'}>Back</Link>
-            </h3>
+                    type="number"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Classe </span>
+						<input className="input100" 
+                   id="grade" 
+                   name="grade" 
+                   value={grade}
+                   onChange={(e) => setGrade(e.target.value)}
+                   type="text"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Groupe </span>
+						<input className="input100" 
+                  id="group" 
+                  name="group" 
+                  value={group}
+                  onChange={(e) => setGroup(e.target.value)}
+                   type="text"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Année scolaire </span>
+						<input className="input100" 
+                  id="school_year" 
+                  name="school_year" 
+                  value={school_year}
+                  onChange={(e) => setSchool_year(e.target.value)}
+                   type="text"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    
+                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span className="label-input100" > Mot de passe </span>
+						<input className="input100" 
+                 id="password" 
+                 name="password" 
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+                   type="password"
+                  classNameName="form-control"  ></input>
+						
+					</div>
+
+                    <button type='submit' value="envoyer"  className="btn btn-primary btn-sm ">
+                     Enregistrer  
+                    </button>
+                    <span className="h3 ml-5">
+                        <Link to={'/student'}>Back</Link>
+                    </span>
+                </form>
+            </div>
+        </div>
+           
         </div>
     );
 }

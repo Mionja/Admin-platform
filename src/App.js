@@ -1,5 +1,11 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import './assets/admin/css/styles.css';
+import './assets/admin/js/scripts';
+
+import Navbar from './components/Layouts/Navbar';
+import Sidebar from './components/Layouts/Sidebar';
+import Footer from './components/Layouts/Footer';
 
 import Header from './components/Dashboard/Header';
 
@@ -19,9 +25,14 @@ import EditTeacher from './components/Teacher/EditTeacher';
 
 export default function App() {
   return (
+    <div>
+        {/* <Navbar /> */}
+
     <Router>
       <div>
-
+      {/* <div id="layoutSidenav_nav">
+            <Sidebar />
+        </div> */}
         <Routes>
           {/* Route for students and marks*/}
             <Route path="/" element={<Header/>}/>
@@ -43,5 +54,8 @@ export default function App() {
         </Routes>
       </div>
     </Router>
+    
+    
+        </div>
   );
 }

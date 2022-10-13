@@ -22,22 +22,22 @@ function ListModule() {
 
 
 return (
-    <div>
-      <a href="/" className='btn btn-dark text-center'>Dashboard</a>
-      <h1>LIST OF MODULES</h1>
-      <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
-                <thead>
-                    <tr className="mt-2 mb-3" style={{float:"right"}}>
-                    <a href="/addModule"  className='btn btn-info'>Add module</a>
-                    </tr>
-                </thead>    
-                <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>code</td>
-                        <td>hour</td>
-                        <td colSpan={2}></td>
-                    </tr>
+   
+      <div>
+            <h1 align = 'centre'>Les listes des modules</h1>
+            <Link to={'/addModule'}>
+              <button className="btn btn-info float-right mr-5">Ajouter une module</button>
+            </Link>
+            <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+            <td>Nom</td>
+            <td>code</td>
+            <td>Heure</td>
+            <td colSpan={2}></td>
+            </tr>
+            </thead>
+            <tbody>
               
                     {data.map((data)=>{
                     return( 
