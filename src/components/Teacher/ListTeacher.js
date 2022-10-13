@@ -11,6 +11,7 @@ function   Table (){
         setData(res.data)
     })
     },[]);
+    console.log(data);
     return (
         <div>
             <h1 align = 'centre'>Les listes des Professeurs</h1>
@@ -29,14 +30,14 @@ function   Table (){
             </tr>
             </thead>
             <tbody>
-                {data.map((prof)=>{
+                {data &&  data.map((prof)=>{
                     return(
                     <tr key={prof.teacher.id}>
                     <td>{prof.teacher.id}</td>
                     <td>{prof.teacher.name}</td>
                     <td>{prof.teacher.email}</td>
                     <td>{prof.teacher.diploma}</td>
-                    <td>{prof.teacher.module.code}</td>
+                    <td>{prof.teacher.modules.code}</td>
                     </tr>)
                 })}
             </tbody>

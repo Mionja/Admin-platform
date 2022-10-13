@@ -9,7 +9,7 @@ import Footer from './components/Layouts/Footer';
 
 import Header from './components/Dashboard/Header';
 
-import ListStudent from "./components/Student/ListStudent";
+import HeaderStudent from './components/Student/HeaderStudent';
 import AddStudent from "./components/Student/AddStudent";
 import EditStudent from "./components/Student/EditStudent";
 import DetailStudent from './components/Student/DetailStudent';
@@ -36,7 +36,7 @@ export default function App() {
         <Routes>
           {/* Route for students and marks*/}
             <Route path="/" element={<Header/>}/>
-            <Route path='/student' element={<ListStudent/>} />
+            <Route path='/student' element={<HeaderStudent/>} />
             <Route path="/addStudent" element={<AddStudent/>}/>      
             <Route path="/editStudent/:id" element={<EditStudent/>}/> 
             <Route path="/detailStudent/:id" element={<DetailStudent/>}/>     

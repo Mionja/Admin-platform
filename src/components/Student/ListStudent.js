@@ -3,30 +3,26 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 
-function Student ()
+function Student (props)
 {
 
  const [data,setData] = useState ([]);
  const [group,setGroup] = useState ("");
  const [gender,setGender] = useState ("");
  
- const grade = 'L1';
- const school_year = 2022;
 
     useEffect (() =>{
         if (gender == 'F' || gender == 'M') {
             axios
-            .get (`http://localhost:8000/api/student/list/${grade}/${group}/${gender}/${school_year}`).then((res)=>{
-               setData(res.data)   })
+            .get (`http://localhost:8000/api/student/list/${props.grade}/${group}/${gender}/${props.school_year}`)
+            .then((res)=>{ setData(res.data)   })
         }
         else{
-            axios.all(
-                [axios.get (`http://localhost:8000/api/student/list/${grade}/${school_year}`).then((res)=>{setData(res.data)   }),
-                ]
-            )
+            axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
+            .then((res)=>{setData(res.data)   })
         }
-    },[]);
-// console.log(module.module_number);
+    },[props.grade, props.school_year]);
+
 
 var Fdata = data;
 // var list_module = module.list_module;
@@ -43,12 +39,10 @@ else if (gender !== '') {
 
     return(
         <div>
-            <div>
-            <h2 className="text-center">LISTE DES ETUDIANT EN L1 </h2>
-                <h3 className="mb-2">
-                    <Link to={'/'}>Dashboard</Link>
-                </h3>
-            </div>
+             <h2 className="text-center mt-4">
+                LISTE DES ETUDIANT EN {props.grade} ({props.school_year - 1} - {props.school_year })
+                </h2>
+            <hr/>
 
             <div  className="mt-3">
             <form>
@@ -58,8 +52,17 @@ else if (gender !== '') {
                 onChange={(e) => setGroup(e.target.value)}
                 >
                 <option value="">--Group--</option>    
-                <option value="G1">Group 1</option>
-                <option value="G2">Group 2</option>
+                { (props.grade == 'L1') ?
+                <>
+                    <option value="G1">Group 1</option>
+                    <option value="G2">Group 2</option>
+                </>
+                :
+                <>
+                    <option value="RSI">RSI</option>
+                    <option value="E-DEV">E-DEV</option>
+                </>
+                }
                 </select>
 
                 <select

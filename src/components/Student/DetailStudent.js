@@ -57,7 +57,6 @@ function DetailStudent() {
             }, 3000);
         })
     }, [])
-    
   return (
     <div>
       <h3 className="mb-2 btn btn-sm btn-dark">
@@ -91,7 +90,6 @@ function DetailStudent() {
                 onClick={Next}>Next</a></li>
             </ul>
       </div>
-
       <RDN year={year} id={id}/>
     </div>
   )
