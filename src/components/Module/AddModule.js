@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import react from 'react';
 import axios from 'axios';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import './../../assets/admin/css/util.css';
 import './../../assets/admin/css/main.css';
 import { Link } from 'react-router-dom';
@@ -36,13 +36,13 @@ function Modules() {
     })
     console.log(res.status);
     if (res.status === 200) {
-      //console.log(res);
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: 'Module Ajouter avec Succes',
-      //   showConfirmButton: true,
-      // })
-      alert("Etudiant Ajouter avec Succes");
+      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Module Ajouter avec Succes',
+        showConfirmButton: true,
+      })
+      // alert("Etudiant Ajouter avec Succes");
     }
 
 };
