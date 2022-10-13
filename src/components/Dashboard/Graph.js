@@ -59,6 +59,8 @@ function Graph(props) {
         }
     }
 
+    let[isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         setComparisonPerYear({
             labels: ["2018-2019", "2019-2020", "2020-2021", "2021-2022"],
@@ -96,7 +98,13 @@ function Graph(props) {
         });    
 
         axios.all(
-            [axios.get (`http://localhost:8000/api/student/general/average_point/${props.grade}/2022`).then((res)=>{setMoyenneGeneral2022(res.data)   }),
+            [axios.get (`http://localhost:8000/api/student/general/average_point/${props.grade}/2022`)
+            .then((res)=>{
+                setTimeout(() => {
+                    setMoyenneGeneral2022(res.data);
+                    setIsLoading(false);
+                  }, 3000);
+            }),
              axios.get (`http://localhost:8000/api/student/general/average_point/${props.grade}/2021`).then((res)=>{setMoyenneGeneral2021(res.data)   }),
              axios.get (`http://localhost:8000/api/student/list/${props.grade}/2022`).then((res)=>{setNombre2022(res.data)   }),
              axios.get (`http://localhost:8000/api/student/list/${props.grade}/2021`).then((res)=>{setNombre2021(res.data)   }),
@@ -111,9 +119,13 @@ function Graph(props) {
         </h1>
 
         <div className="row mt-5">
-            <div className="col-5 ml-5 mr-2">
+            { isLoading ?  <div className="col-5 ml-5 mr-2">
                 <Bar options={chartOptions} data={ComparisonPerYear}/> 
             </div>
+                :
+                <p>Loading...</p>    
+        }
+
             <div className="col-5 ml-4">
                 <Bar options={chartOptions} data={NombreEtudiants}/> 
             </div>

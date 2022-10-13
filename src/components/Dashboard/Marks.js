@@ -57,7 +57,7 @@ function Marks(props) {
     let nbrGarconPasMoyenne = 0;
     let nbrParticipation  = 0;
     let nbrNonParticipation = 0;
-    const test = data;
+    var test = data;
     test.forEach(data => {
         console.log(data.data);
         if (data.data.average_point >= 10) {
