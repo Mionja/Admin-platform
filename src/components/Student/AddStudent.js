@@ -173,12 +173,15 @@ const AddStudent = () => {
 						
 					</div>
 
-                    <button type='submit' value="envoyer"  className="btn btn-primary btn-sm ">
-                     Enregistrer  
-                    </button>
-                    <span className="h3 ml-5">
-                        <Link to={'/student'}>Back</Link>
-                    </span>
+                    <div className='row'>
+          <button type='submit' value="envoyer"  className="btn btn-primary ">
+           Enregistrer
+           </button>
+           <Link to={'/student'}>
+            <p className='text-center mt-2' >Revenir dans liste etudiant? <a href="#">Retour</a></p>
+           </Link>
+           </div>
+                   
                 </form>
             </div>
         </div>

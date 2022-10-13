@@ -1,5 +1,5 @@
 import React , {useState,useEffect} from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -9,8 +9,15 @@ function Student (props)
  const [data,setData] = useState ([]);
  const [group,setGroup] = useState ("");
  const [gender,setGender] = useState ("");
- 
-
+ const history = useNavigate();
+const delteStudent = (id)=>{
+    fetch(`http://localhost:8000/student/${id}`, {
+        method: 'DELETE'
+      }).then(() => {
+        alert('Un etudiant supprimé')
+        history.push('/student');
+      }) 
+}
     useEffect (() =>{
         if (gender == 'F' || gender == 'M') {
             axios
@@ -107,7 +114,8 @@ else if (gender !== '') {
                     <td>
                         <Link to={`/editStudent/${students.student.id}`} className="btn btn-sm btn-warning">Edit</Link>
                     </td>
-                    <td><button className="btn btn-sm btn-danger">Delete</button></td>
+                    <td><button className="btn btn-sm btn-danger"
+                    onClick={()=>delteStudent(students.student.id)}>Delete</button></td>
                     </tr>)
                 })}
                 </tbody>

@@ -123,7 +123,14 @@ function EditCategory(props)
 
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary px-4 float-end">Update</button>
+                        <div className='row'>
+                                <button type='submit' value="envoyer"  className="btn btn-primary ">
+                                Enregistrer
+                                </button>
+                                <Link to={'/module'}>
+                                    <p className='text-center mt-2' >Revenir dans liste professeurs? <a href="#">Retour</a></p>
+                                </Link>
+                        </div>
                     </form>
 
                 </div>

@@ -4,7 +4,7 @@ import axios from 'axios';
 // import Swal from 'sweetalert2';
 import './../../assets/admin/css/util.css';
 import './../../assets/admin/css/main.css';
-//import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import { useHistory } from 'react-router';
 
 
@@ -98,10 +98,14 @@ return (
 						<a href="#">
 						</a>
 					</div>
-				
-              <button type='submit' value="envoyer"  className="btn btn-primary btn-sm ">
+            <div className='row'>
+          <button type='submit' value="envoyer"  className="btn btn-primary ">
            Enregistrer
            </button>
+           <Link to={'/module'}>
+            <p className='text-center mt-2' >Revenir dans liste module? <a href="#">Retour</a></p>
+           </Link>
+           </div>
            <div class="text-right p-t-8 p-b-31">
 						<a href="#">
 						</a>
@@ -119,58 +123,3 @@ return (
 
 export default Modules;
 
-// <div className="contener">
-  //     <div className="row">
-  //         <div className="col-md-12">
-  //           <div className="card">
-  //              <div className="card-header">
-  //              <h1>
-  //               Ajouts des Modules.
-  //               {/* <link onTouchCancel={"/"} className="btn btn-primarybtn-sm float-end">
-  //               </link> */}
-  //              </h1>
-  //             </div>
-  //             <div className='card-body'>
-  //             <form onSubmit={handlesubmit}>
-  //             <div className='form-group mb-3'>
-  //             <label>Nom</label>
-  //             <input
-  //                 type="text"
-  //                 name="name"
-  //                 value = {name}
-  //                 onChange={(e) => setName(e.target.value)}
-  //                 className="form-control"              
-  //             ></input>
-  //             </div>
-  //             <div className='form-group mb-3'>
-  //             <label>code</label>
-  //             <input
-  //                 type="text"
-  //                 name="code"
-  //                 value={code}
-  //                 onChange={(e) => setCode(e.target.value)}
-  //                 className="form-control"              
-  //             ></input>
-  //             </div>
-  //             <div className='form-group mb-3'>
-  //             <label>hour</label>
-  //             <input
-  //                 type="number"
-  //                 name="hour"
-  //                 value={hour}
-  //                 onChange={(e) => setHour(e.target.value)}
-  //                 className="form-control"             
-  //             ></input>
-  //             </div>
-              
-  //             <div className='form-group mb-3'>
-  //             <button type='submit' value="envoyer"  className="btn btn-primary btn-sm float-end">
-  //               enregistrer
-  //               </button>  
-  //             </div>
-  //             </form>
-  //             </div>
-  //           </div>
-  //         </div>
-  //        </div>
-  //       </div>

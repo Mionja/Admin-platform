@@ -3,7 +3,7 @@ import axios from 'axios';
 // import Swal from 'sweetalert2';
 import './../../assets/admin/css/util.css';
 import './../../assets/admin/css/main.css';
-//import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import { useHistory } from 'react-router';
 
 
@@ -124,10 +124,14 @@ return (
 						<a href="#">
 						</a>
 					</div>
-				
-              <button type='submit'   className="btn btn-primary btn-sm ">
+				  <div className='row'>
+          <button type='submit' value="envoyer"  className="btn btn-primary ">
            Enregistrer
            </button>
+           <Link to={'/teacher'}>
+            <p className='text-center mt-2' >Revenir dans liste professeurs? <a href="#">Retour</a></p>
+           </Link>
+           </div>
            <div class="text-right p-t-8 p-b-31">
 						<a href="#">
 						</a>
@@ -142,15 +146,3 @@ return (
 }
 export default Professeurs;
 
-
-{/* <div>
-<select 
-value={module} 
-onChange={(e) => setModule(e.target.value)}>
-{data.map((Item)=>{
-      return( 
-        <option key={Item.module.id} >{Item.module.name}</option>  
-   )
-  })}
-</select>
-</div> */}

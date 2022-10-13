@@ -2,29 +2,24 @@ import React , {useState,useEffect} from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-function ListModule() {
+function ListModule(props) {
   let [data,setData] = useState ([]);
-  const grade = 'L1';
 
   useEffect (() =>{
-  //   axios.all(
-  //     [
-  //      axios.get (`http://localhost:8000/api/module/list/${grade}`).then((res)=>{setData(res.data)   })       
-  //     ]
-  // )
-      fetch(`http://localhost:8000/api/module/list/${grade}`).then((res)=>{
+      fetch(`http://localhost:8000/api/module/list/${props.grade}`).then((res)=>{
           return res.json()
       }).then((data)=>{
         //console.log(data.list_module)
         setData(data.list_module)
       })
-},[]);
+},[props.grade]);
 
 
 return (
    
       <div>
-            <h1 align = 'centre'>Les listes des modules</h1>
+            <h1 align = 'center' className="mt-3 mb-5">Les listes de module des {props.grade}</h1>
+
             <Link to={'/addModule'}>
               <button className="btn btn-info float-right mr-5">Ajouter une module</button>
             </Link>
@@ -42,7 +37,11 @@ return (
                     {data.map((data)=>{
                     return( 
                     <tr key={data.module.id}>
-                    <td>{data.module.name}</td>
+                    <td>
+                    <Link to={`/detailModule/${data.module.id}`} >
+                          {data.module.name}
+                    </Link>
+                      </td>
                     <td>{data.module.code}</td>
                     <td>{data.module.hour}</td>
                     <td>

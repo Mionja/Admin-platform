@@ -14,7 +14,8 @@ import AddStudent from "./components/Student/AddStudent";
 import EditStudent from "./components/Student/EditStudent";
 import DetailStudent from './components/Student/DetailStudent';
 
-import ListModule from './components/Module/ListModule';
+import ModuleHeader from './components/Module/ModuleHeader';
+import DetailModule from './components/Module/DetailModule';
 import AddModule from './components/Module/AddModule';
 import EditModule from './components/Module/EditModule';
 
@@ -42,7 +43,8 @@ export default function App() {
             <Route path="/detailStudent/:id" element={<DetailStudent/>}/>     
                    
           {/* Route for  modules*/}
-            <Route path='/module' element={<ListModule/>} />
+            <Route path='/module' element={<ModuleHeader/>} />
+            <Route path='/detailModule/:id' element={<DetailModule/>} />
             <Route path="/addModule" element={<AddModule/>}/>      
             <Route path="/editModule/:id" element={<EditModule/>}/>        
 
