@@ -1,25 +1,39 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react'
 
+function Navbar() {
+  return (
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Note <span className='text-info'>'EO</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-const Navbar = () => {
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/student">Etudiants <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/module">Modules</a>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link" href="/teacher">Professeurs</a>
+      </li>
 
-    return (
-        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-primary">
-            <Link className="navbar-brand ps-3" to="/">UniversitéEsti.</Link>
-
-            <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i className="fas fa-bars"></i></button>
-
-            <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button className="btn btn-primary" id="btnNavbarSearch" type="button"><i className="fas fa-search"></i></button>
-                </div>
-            </form>
-
-        </nav>
-    );
-
+      <li class="nav-item">
+        <a class="nav-link" href="/mark">Notes</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+    </div>
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -3,11 +3,8 @@ import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
 import './assets/admin/css/styles.css';
 import './assets/admin/js/scripts';
 
-import Navbar from './components/Layouts/Navbar';
-import Sidebar from './components/Layouts/Sidebar';
-import Footer from './components/Layouts/Footer';
-
 import Header from './components/Dashboard/Header';
+import Navbar from './components/Layouts/Navbar';
 
 import HeaderStudent from './components/Student/HeaderStudent';
 import AddStudent from "./components/Student/AddStudent";
@@ -23,24 +20,23 @@ import ListTeacher from './components/Teacher/ListTeacher';
 import AddTeacher from './components/Teacher/AddTeacher';
 import EditTeacher from './components/Teacher/EditTeacher';
 
+import Marks from './components/Mark/Marks';
 
 export default function App() {
   return (
+    
     <div>
-        {/* <Navbar /> */}
-
+      <Navbar/>
     <Router>
       <div>
-      {/* <div id="layoutSidenav_nav">
-            <Sidebar />
-        </div> */}
         <Routes>
           {/* Route for students and marks*/}
             <Route path="/" element={<Header/>}/>
             <Route path='/student' element={<HeaderStudent/>} />
             <Route path="/addStudent" element={<AddStudent/>}/>      
             <Route path="/editStudent/:id" element={<EditStudent/>}/> 
-            <Route path="/detailStudent/:id" element={<DetailStudent/>}/>     
+            <Route path="/detailStudent/:id" element={<DetailStudent/>}/>    
+            <Route path="/mark" element={<Marks/>}/>     
                    
           {/* Route for  modules*/}
             <Route path='/module' element={<ModuleHeader/>} />

@@ -59,23 +59,24 @@ function DetailStudent() {
     }, [])
   return (
     <div>
-      <h3 className="mb-2 btn btn-sm btn-dark">
-            <Link to={'/student'}>List student</Link>
-      </h3>
-      <h1>Detail student:</h1>
+            <Link to={'/student'}
+            className="mb-2 btn btn-sm btn-dark">List student</Link>
+      <h1>Detail sur l'étudiant:</h1>
       { (isLoading) ? <img src={loading} className="ml-5"/> : 
         <>
-                <p>Name: {data.student.name}</p>
+                <p>Nom: {data.student.name}</p>
                 <p>Email : {data.student.email}</p>
                 <p>Age : {data.student.age}</p>
-                <p>Gender : {data.student.gender}</p>
+                <p>Genre : 
+                  { data.student.gender ==='M'? "Masculin": "Feminin" }
+                </p>
         </>
       }
 
     {/* Choosing the Academic year  */}
-      <div className='row'>
+      <div className='row mt-5'>
             <div class="col-4"></div>
-            <ul class="pagination">
+            <ul class="pagination col-8">
                 <li class="page-item"><a class="page-link" href="#"
                 onClick={Previous}>Previous</a></li>
                 <li class="page-item"><a class="page-link" href="#"

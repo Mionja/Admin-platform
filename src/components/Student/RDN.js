@@ -1,29 +1,24 @@
-import React , {useState,useEffect} from "react"
+import React , {useState,useEffect,useRef} from "react"
 import axios from 'axios'
 import MarksList from "./MarksList";
+import { useReactToPrint } from "react-to-print";
 
 function RDN(props) {
 
     let [data, setData] = useState([]);
+    let [student, setStudent] = useState([]);
     let [moyenne, setMoyenne] = useState(0);
 
-    const onButtonClick = () => {
-        // using Java Script method to get PDF file
-        fetch('SamplePDF.pdf').then(response => {
-            response.blob().then(blob => {
-                // Creating new object of PDF file
-                const fileURL = window.URL.createObjectURL(blob);
-                // Setting various property values
-                let alink = document.createElement('a');
-                alink.href = fileURL;
-                alink.download = 'SamplePDF.pdf';
-                alink.click();
-            })
-        })
-      };
-    
+    const componentRef = useRef();
+    const printData = useReactToPrint({
+      content: () => componentRef.current,
+      documentTitle: "test",
+      onafterprint: () => alert("print success"),
+    });
+
     let [isLoadingData, setIsLoadingData] = useState(true);
     let [isLoadingMoyenne, setIsLoadingMoyenne] = useState(true);
+    let [isLoadingStudent, setIsLoadingStudent] = useState(true);
 
     useEffect(() => {
       axios.all([
@@ -44,25 +39,45 @@ function RDN(props) {
                 console.log(moyenne);
                 setIsLoadingMoyenne(false);
               }, 3000);
+          }),
+
+          axios.get(`http://localhost:8000/api/student/${props.id}`)
+          .then( res => {
+              console.log('etudiant',res.data);
+              setTimeout(() => {
+                setStudent(res.data);
+                setIsLoadingStudent(false);
+              }, 3000);
           })
 
       ])
+
     }, [props.year, props.id])
 
   return (
     <div>
-      <h3>Relevé de note de l'etudiant {props.id} pendant l'année scolaire {props.year - 1}-{props.year}</h3>
-      
-        { (isLoadingData) ? <p className="mt-5 ml-5 text-warning">Loading...</p> :""}
+      { (isLoadingData) ? <p className="mt-5 ml-5 text-warning">Loading data marks...</p> :""}
+<hr/>
+      <div   ref={componentRef} className="mt-3 ml-4">
+      { (isLoadingStudent) ? <>Loading personal info...</> : 
+        <>
+            <h3>Relevé de note de {student.student.name} pendant l'année scolaire {props.year - 1}-{props.year}</h3>
+            <p>Email : {student.student.email}</p>
+        </>
+      }
 
         {data && <MarksList data={data} />}
 
         {moyenne && 
           ( moyenne.message === 'Fail') ? <p>Tsy afaka mcalcul moyenne satria mbola misy examen tsy natao</p> : 
-          <p>{moyenne.data}</p>
+          <h3>Moyenne: {moyenne.data}</h3>
         }
-       
-      <button onClick={onButtonClick}> Export to pdf</button>  
+        </div>
+<hr/>
+        <div className="row mb-5">
+          <div className="col-4"></div>
+      <button onClick={printData} className="btn btn-dark text-center col-4 mb-5"> Downloat as pdf</button>  
+      </div>
     </div>
   )
 }
