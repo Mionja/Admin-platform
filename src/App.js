@@ -21,6 +21,7 @@ import AddTeacher from './components/Teacher/AddTeacher';
 import EditTeacher from './components/Teacher/EditTeacher';
 
 import Marks from './components/Mark/Marks';
+// import MarksExcel from './components/Mark/MarksExcel';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/editStudent/:id" element={<EditStudent/>}/> 
             <Route path="/detailStudent/:id" element={<DetailStudent/>}/>    
             <Route path="/mark" element={<Marks/>}/>     
+            {/* <Route path="/mark" element={<MarksExcel/>}/>     */}
                    
           {/* Route for  modules*/}
             <Route path='/module' element={<ModuleHeader/>} />

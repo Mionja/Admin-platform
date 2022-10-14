@@ -38,7 +38,7 @@ function DetailModule() {
                         </div>
                         <hr/>
                         <div>
-                            <h5>List of teachers:</h5>
+                            <h5>List d'enseignant:</h5>
                             {  
                                 data.module.teachers.map((t)=>{
                                     return(

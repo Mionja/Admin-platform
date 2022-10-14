@@ -9,23 +9,21 @@ function Marks() {
     const [module, setModule] = useState('');
     const [email, setEmail] = useState(''); 
     const [semester, setSemester] = useState();
-    const [year, setYear] = useState();
+    let [year, setYear] = useState();
     const [score, setScore] = useState();
     let[data, setData] = useState([]);
-    const handlesubmit= async (e) => {
-        e.preventDefault()
-        const formData = new FormData()
-        formData.append("module", module) 
-        formData.append("email", email) 
-        formData.append("semester", semester) 
-        formData.append("year", year) 
-        formData.append("score", score) 
-    
+    let[student, setStudent] = useState([]);
+
+    const handlesubmit = async (e) => {
+      e.preventDefault();
+
+      const note = { email, module, semester, year, score};
+      console.log(note);
+
       const res = await axios({
           method: 'POST',
           url: "http://127.0.0.1:8000/api/mark",
-          data: formData,
-          
+          data: note,
         })
         console.log(res.status);
         if (res.status === 201) {
@@ -35,16 +33,18 @@ function Marks() {
             title: "Note Ajouter avec Succes",
             showConfirmButton: true,
           })
-        //   alert("Note Ajouter avec Succes");
         }
     
-    };
+  }
 
     useEffect (() =>{
-      axios
-     .get('http://localhost:8000/api/module').then((res)=>{
-         setData(res.data)
-     })
+      axios.all([
+        axios.get('http://localhost:8000/api/module')
+        .then((res)=>{setData(res.data)}),
+
+        axios.get('http://localhost:8000/api/student')
+        .then((res)=>{setStudent(res.data)}),
+        ])
      },[]);
 
   return (
@@ -56,15 +56,21 @@ function Marks() {
 						Ajout note
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="label-input100"> Email de l'étudiant </span>
-						<input class="input100"  
-                  type="text"
-                  name="code"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-control"></input>
-					</div>
+          <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+						<span class="label-input100"> Email étudiant </span>
+                    <select className="form-control"
+                    id='module_id'
+                    name="module_id"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}>
+                      {student.map((Item)=>{
+                      return( 
+                        
+                         <option value={Item.student.email} >{Item.student.email}</option>  
+                            )
+                       })}
+                    </select>
+                    </div>
           
           <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
 						<span class="label-input100"> Code module </span>
@@ -76,7 +82,7 @@ function Marks() {
                       {data.map((Item)=>{
                       return( 
                         
-                         <option value={Item.module.id} >{Item.module.code}</option>  
+                         <option value={Item.module.code} >{Item.module.code}</option>  
                             )
                        })}
                     </select>

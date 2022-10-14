@@ -32,22 +32,23 @@ function   Table (){
             </thead>
             <tbody>
                 {data &&  data.map((prof)=>{
-                    var test =   prof.teacher.modules.map((m)=>{
-                        <>
-                            <span>{m.code}</span>
-                        </>})
+                    // var test =   prof.teacher.modules.map((m)=>{
+                    //     <>
+                    //         <span>{m.code}</span>
+                    //     </>})
                     return(
                     <tr key={prof.teacher.id}>
-                    <td>{prof.teacher.id}</td>
-                    <td>{prof.teacher.name}</td>
-                    <td>{prof.teacher.email}</td>
-                    <td>{prof.teacher.diploma}</td>
-                    <td>{
-                            prof.teacher.modules.map((m)=>{
-                                <>
-                                    <span>{m.code}</span>
-                                </>})
-                        }</td>
+                        <td>{prof.teacher.id}</td>
+                        <td>{prof.teacher.name}</td>
+                        <td>{prof.teacher.email}</td>
+                        <td>{prof.teacher.diploma}</td>
+                        <td>{
+                                prof.teacher.modules.map((m)=>{
+                                    <>
+                                        <span>{m}</span>
+                                    </>})
+                            }
+                        </td>
                     </tr>)
                 })
                 

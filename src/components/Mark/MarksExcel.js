@@ -12,15 +12,16 @@ function MarksExcel() {
   function handleSubmit(event) {
     event.preventDefault()
     const url = 'http://localhost:8000/api/mark';
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', file.name);
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // formData.append('fileName', file.name);
+    console.log('file',file);
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
       },
     };
-    axios.post(url, formData, config).then((response) => {
+    axios.post(url, {data:file}, config).then((response) => {
         console.log(response.data);
     });
 

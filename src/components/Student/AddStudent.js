@@ -1,7 +1,7 @@
 import React, {setState, useState} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-
+import Swal from 'sweetalert2';
 
 const AddStudent = () => {
 
@@ -27,7 +27,11 @@ const AddStudent = () => {
           })
         if (res.data.status === 200 ){
           console.log(res.data.status);
-          alert("Un etudiant est ajouté");
+          Swal.fire({
+            icon: 'success',
+            title: 'Module Ajouter avec Succes',
+            showConfirmButton: true,
+          })
         }        
         // axios.defaults.xsrfCookieName = "csrftoken";
         // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -97,21 +101,16 @@ const AddStudent = () => {
                   classNameName="form-control"  ></input>
 						
 					</div>
-
-                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span className="label-input100" > Genre </span>
-						<input className="input100" 
-                   id="gender" 
-                   name="gender" 
-                   required 
-                   value={gender}
-                   onChange={(e) => setGender(e.target.value)}
-                   type="text"
-                  classNameName="form-control"  ></input>
-						
-					</div>
-
-                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+					<span class="label-input100"> Genre </span>
+                    <select className="form-control"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}>
+                       <option value="M">Femme</option>
+                        <option value="F">Homme</option>
+                    </select>
+                </div>
+                    <div className="wrap-input100 validate-input m-b-23 mt-4" data-validate = "Username is reauired">
 						<span className="label-input100" > Age </span>
 						<input className="input100" 
                     id="age" 
@@ -124,31 +123,37 @@ const AddStudent = () => {
 						
 					</div>
 
-                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span className="label-input100" > Classe </span>
-						<input className="input100" 
-                   id="grade" 
-                   name="grade" 
-                   value={grade}
-                   onChange={(e) => setGrade(e.target.value)}
-                   type="text"
-                  classNameName="form-control"  ></input>
-						
-					</div>
+                    <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+                        <span class="label-input100"> Classe </span>
+                        <select className="form-control"
+                        id="grade" 
+                        name="grade" 
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}>
+                            <option value="L1">L1</option>
+                            <option value="L2">L2</option>
+                            <option value="L3">L3</option>
+                            <option value="M1">M1</option>
+                            <option value="M2">M2</option>
+                        </select>
+                    </div>
 
-                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-						<span className="label-input100" > Groupe </span>
-						<input className="input100" 
-                  id="group" 
-                  name="group" 
-                  value={group}
-                  onChange={(e) => setGroup(e.target.value)}
-                   type="text"
-                  classNameName="form-control"  ></input>
-						
-					</div>
+                    <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+                        <span class="label-input100"> Groupe </span>
+                        <select className="form-control"
+                        id="grade" 
+                        name="grade" 
+                        value={group}
+                        onChange={(e) => setGroup(e.target.value)}>
+                            <option value="G1">Groupe 1</option>
+                            <option value="G2">Groupe 2</option>
+                            <option value="E-DEV">E-DEV</option>
+                            <option value="RSI">RSI</option>
+                        </select>
+                    </div>
 
-                    <div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+
+                    <div className="wrap-input100 validate-input m-b-23 mt-3" data-validate = "Username is reauired">
 						<span className="label-input100" > Année scolaire </span>
 						<input className="input100" 
                   id="school_year" 
