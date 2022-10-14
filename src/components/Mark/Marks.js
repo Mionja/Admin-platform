@@ -53,7 +53,7 @@ function Marks() {
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form"  onSubmit={handlesubmit}>
 					<span class="login100-form-title p-b-49">
-						Ajouts modules
+						Ajout note
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">

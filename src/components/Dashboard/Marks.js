@@ -58,6 +58,7 @@ function Marks(props) {
     let nbrParticipation  = 0;
     let nbrNonParticipation = 0;
     var test = data;
+    console.log('test',test);
     test.forEach(data => {
         console.log(data.data);
         if (data.data.average_point >= 10) {
@@ -154,9 +155,14 @@ function Marks(props) {
         });    
         
         axios.all(
-            [axios.get (`http://localhost:8000/api/student/average_point/${props.grade}/${props.year}`).then((res)=>{setData(res.data)   }),            
+            [axios.get (`http://localhost:8000/api/student/average-point/${props.grade}/${props.year}`)
+            .then((res)=>{
+                console.log('bla',data);
+                setData(res.data)  
+             }),            
             ]
         )
+        console.log('axios',data);
     }, [props.grade, props.year]);
   
 

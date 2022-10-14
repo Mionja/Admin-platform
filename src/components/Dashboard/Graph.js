@@ -133,21 +133,21 @@ function Graph(props) {
 
         {/** Choose the year */}
         <div className='row'>
-                <div class="col-4"></div>
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#"
-                        onClick={Previous}>Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#"
-                        onClick={() => setYear(2019)}>2019</a></li>
-                        <li class="page-item"><a class="page-link" href="#"
-                        onClick={() => setYear(2020)}>2020</a></li>
-                        <li class="page-item"><a class="page-link" href="#"
-                        onClick={() => setYear(2021)}>2021</a></li>
-                        <li class="page-item active"><a class="page-link" href="#"
-                            onClick={() => setYear(2022)}>2022</a></li>
-                        <li class="page-item"><a class="page-link" href="#"
-                        onClick={Next}>Next</a></li>
-                    </ul>
+            <div class="col-4"></div>
+            <ul class="pagination div col-8">
+                <li class="page-item"><a class="page-link" href="#"
+                onClick={Previous}>Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                onClick={() => setYear(2019)}>2019</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                onClick={() => setYear(2020)}>2020</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                onClick={() => setYear(2021)}>2021</a></li>
+                <li class="page-item active"><a class="page-link" href="#"
+                    onClick={() => setYear(2022)}>2022</a></li>
+                <li class="page-item"><a class="page-link" href="#"
+                onClick={Next}>Next</a></li>
+            </ul>
         </div>
 
         <Marks year={year} grade={props.grade}/>
