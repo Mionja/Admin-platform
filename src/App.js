@@ -21,6 +21,7 @@ import AddTeacher from './components/Teacher/AddTeacher';
 import EditTeacher from './components/Teacher/EditTeacher';
 
 import Marks from './components/Mark/Marks';
+import HeaderRetake_exam from './components/Retake_exam/Header';
 // import MarksExcel from './components/Mark/MarksExcel';
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
     <Router>
       <div>
         <Routes>
-          {/* Route for students and marks*/}
+          {/* Route  mikasika mpianatra sy ny note-ny*/}
             <Route path="/" element={<Header/>}/>
             <Route path='/student' element={<HeaderStudent/>} />
             <Route path="/addStudent" element={<AddStudent/>}/>      
@@ -40,16 +41,19 @@ export default function App() {
             <Route path="/mark" element={<Marks/>}/>     
             {/* <Route path="/mark" element={<MarksExcel/>}/>     */}
                    
-          {/* Route for  modules*/}
+          {/* Route resaka module*/}
             <Route path='/module' element={<ModuleHeader/>} />
             <Route path='/detailModule/:id' element={<DetailModule/>} />
             <Route path="/addModule" element={<AddModule/>}/>      
             <Route path="/editModule/:id" element={<EditModule/>}/>        
 
-          {/* Route for teachers */}
+          {/* Route resaka mpampianatra */}
             <Route path='/teacher' element={<ListTeacher/>} />
             <Route path="/addTeacher" element={<AddTeacher/>}/>      
             <Route path="/editTeacher" element={<EditTeacher/>}/>        
+
+          {/* Route resaka rattrapages rehetra */}
+          <Route path="/retake-exam" element={<HeaderRetake_exam/>}/>        
 
         </Routes>
       </div>

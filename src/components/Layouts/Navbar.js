@@ -27,7 +27,7 @@ function Navbar() {
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/rattrapage">Rattrapages</a>
+        <a class="nav-link" href="/retake-exam">Rattrapages</a>
       </li>
 
       <li class="nav-item">
