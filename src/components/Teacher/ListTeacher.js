@@ -15,18 +15,16 @@ function   Table (){
     console.log(data);
     return (
         <div>
-            <h1 align = 'centre'>Les listes des Professeurs</h1>
+            <h1 align = 'center' className='mt-3'>Les listes des Professeurs</h1>
             <Link to={'/addTeacher'}>
-                <button className="btn btn-info float-right mr-5">Ajouter un Professeurs</button>
+                <button className="btn btn-info float-right mr-5">Ajouter un Professeur</button>
             </Link>
             <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-            <td>id</td>
             <td>Nom</td>
             <td>Email</td>
-            <td>Diplome</td>
-            <td>modules</td>
+            <td></td>
 
             </tr>
             </thead>
@@ -38,17 +36,9 @@ function   Table (){
                     //     </>})
                     return(
                     <tr key={prof.teacher.id}>
-                        <td>{prof.teacher.id}</td>
                         <td>{prof.teacher.name}</td>
                         <td>{prof.teacher.email}</td>
-                        <td>{prof.teacher.diploma}</td>
-                        <td>{
-                                prof.teacher.modules.map((m)=>{
-                                    <>
-                                        <span>{m}</span>
-                                    </>})
-                            }
-                        </td>
+                        <td><button className='text-primary'>Modifier</button></td>
                     </tr>)
                 })
                 

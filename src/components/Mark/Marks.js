@@ -6,10 +6,10 @@ import Swal from 'sweetalert2';
 
 
 function Marks() {
-    const [module, setModule] = useState('');
+    const [module_id, setModule_id] = useState(0);
     const [email, setEmail] = useState(''); 
     const [semester, setSemester] = useState();
-    let [year, setYear] = useState();
+    let [year, setYear] = useState(2022);
     const [score, setScore] = useState();
     let[data, setData] = useState([]);
     let[student, setStudent] = useState([]);
@@ -17,7 +17,7 @@ function Marks() {
     const handlesubmit = async (e) => {
       e.preventDefault();
 
-      const note = { email, module, semester, year, score};
+      const note = { email, module_id, semester, year, score};
       console.log(note);
 
       const res = await axios({
@@ -46,7 +46,7 @@ function Marks() {
         .then((res)=>{setStudent(res.data)}),
         ])
      },[]);
-
+console.log(module_id);
   return (
     <div class="limiter">
 		<div class="container-login100" >
@@ -77,33 +77,35 @@ function Marks() {
                     <select className="form-control"
                     id='module_id'
                     name="module_id"
-                    value={module} 
-                    onChange={(e) => setModule(e.target.value)}>
+                    value={module_id} 
+                    onChange={(e) => setModule_id(e.target.value)}>
                       {data.map((Item)=>{
                       return( 
                         
-                         <option value={Item.module.code} >{Item.module.code}</option>  
+                         <option value={Item.module.id} >{Item.module.code}</option>  
                             )
                        })}
                     </select>
                     </div>
           <div class="wrap-input100 validate-input m-b-23 mt-3" data-validate = "Username is reauired">
 						<span class="label-input100">Semestre</span>
-						<input class="input100" 
-                  type="number"
-                   name="hour"
-                  value={semester}
-                  onChange={(e) => setSemester(e.target.value)}
-                  className="form-control"  ></input>
+            <select className="form-control"
+                     value={semester}
+                     onChange={(e) => setSemester(e.target.value)}>
+                         <option value={1} > 1er semestre </option>  
+                         <option value={2} > 2em semestre </option>  
+                    </select>
 					
 					</div>
 					
             <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                 <span class="label-input100">Année scolaire</span>
                 <input class="input100" 
+            required
             type="number"
-            name="hour"
             value={year}
+            min={2018}
+            max={2023}
             onChange={(e) => setYear(e.target.value)}
             className="form-control"  ></input>
             
@@ -112,8 +114,10 @@ function Marks() {
           <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">Note</span>
 						<input class="input100" 
+                  required
                   type="number"
-                   name="hour"
+                  min={0}
+                  max={20}
                   value={score}
                   onChange={(e) => setScore(e.target.value)}
                   className="form-control"  ></input>

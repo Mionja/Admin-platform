@@ -72,7 +72,7 @@ return (
 						<span class="label-input100">Email</span>
 						<input class="input100" 
                   id="email" 
-                  type="text"
+                  type="email"
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -105,9 +105,9 @@ return (
                   onChange={(e) => setGender(e.target.value)}
                   className="form-control" ></input>
                   </div> */}
-            <div>
-                  <label>Modules</label><br></br>
-                    <select 
+            <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+						<span class="label-input100"> Code module </span>
+                    <select className="form-control"
                     id='module_id'
                     name="module_id"
                     value={module_id} 

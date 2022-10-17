@@ -76,7 +76,7 @@ function RDN(props) {
 <hr/>
         <div className="row mb-5">
           <div className="col-4"></div>
-      <button onClick={printData} className="btn btn-dark text-center col-4 mb-5"> Downloat as pdf</button>  
+      <button onClick={printData} className="btn btn-dark text-center col-4 mb-5"> Télécharger en tant que pdf</button>  
       </div>
     </div>
   )

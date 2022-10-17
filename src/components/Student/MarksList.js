@@ -17,7 +17,11 @@ function MarksList({data}) {
                         <tr key={data.marks.id}>
                             <td>{data.marks.module.code}</td>
                             <td>{data.marks.module.name}</td>
-                            <td>{data.marks.score}</td>
+                            {  
+                              (data.marks.score < 10) ? 
+                               <td className='text-danger'>{data.marks.score} (à rattrapper)</td> 
+                              : <td>{data.marks.score}</td>
+                            }
                             <td>{data.marks.semester}</td>
                         </tr>
                     )

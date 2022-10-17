@@ -60,6 +60,7 @@ return (
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100" > Nom </span>
 						<input class="input100" 
+                  required
                   type="text"
                   name="name"
                   value = {name}
@@ -70,9 +71,12 @@ return (
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100"> Code </span>
-						<input class="input100"  
+						<input class="input100"
+                  required
                   type="text"
                   name="code"
+                  maxLength={8}
+                  minLength={8}
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   className="form-control"></input>
@@ -86,8 +90,11 @@ return (
           <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">Heure</span>
 						<input class="input100" 
+                  required  
                   type="number"
                    name="hour"
+                   min={12}
+                   max={24}
                   value={hour}
                   onChange={(e) => setHour(e.target.value)}
                   className="form-control"  ></input>

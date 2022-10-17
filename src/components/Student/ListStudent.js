@@ -8,7 +8,7 @@ function Student (props)
 
  const [data,setData] = useState ([]);
  const [group,setGroup] = useState ("");
- const [gender,setGender] = useState ("");
+ let [gender, setGender] = useState("");
  const history = useNavigate();
 const delteStudent = (id)=>{
     fetch(`http://localhost:8000/student/${id}`, {
@@ -19,15 +19,8 @@ const delteStudent = (id)=>{
       }) 
 }
     useEffect (() =>{
-        if (gender == 'F' || gender == 'M') {
-            axios
-            .get (`http://localhost:8000/api/student/list/${props.grade}/${group}/${gender}/${props.school_year}`)
-            .then((res)=>{ setData(res.data)   })
-        }
-        else{
-            axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
-            .then((res)=>{setData(res.data)   })
-        }
+        axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
+        .then((res)=>{setData(res.data)   })
     },[props.grade, props.school_year]);
 
 
@@ -94,8 +87,6 @@ else if (gender !== '') {
                     <tr>
                         <td>name</td>
                         <td>email</td>
-                        <td>age</td>
-                        <td>gender</td>
                         <td>group</td>
                         <td colSpan={2}></td>
                     </tr>
@@ -103,13 +94,11 @@ else if (gender !== '') {
                     return(
                     <tr key={students.student.id}>
                     <td>
-                        <Link to={`/detailStudent/${students.student.id}`} >
+                        <Link to={`/detailStudent/${students.student.id}`}  className='h6'>
                             {students.student.name}
                         </Link>
                     </td>
                     <td>{students.student.email}</td>
-                    <td>{students.student.age}</td>
-                    <td>{students.student.gender}</td>
                     <td>{students.group}</td>
                     <td>
                         <Link to={`/editStudent/${students.student.id}`} className="btn btn-sm btn-warning">Edit</Link>

@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom'
 function ListModule(props) {
   let [data,setData] = useState ([]);
 
+  const deleteModule = (id)=>{
+    //here, we don't delete the module but put it in the historic
+  }
+
   useEffect (() =>{
       fetch(`http://localhost:8000/api/module/list/${props.grade}`).then((res)=>{
           return res.json()
@@ -23,7 +27,7 @@ return (
             <Link to={'/addModule'}>
               <button className="btn btn-info float-right mr-5">Ajouter une module</button>
             </Link>
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
             <thead class="thead-dark">
             <tr>
             <td>Nom</td>
@@ -38,17 +42,19 @@ return (
                     return( 
                     <tr key={data.module.id}>
                     <td>
-                    <Link to={`/detailModule/${data.module.id}`} >
+                    <Link to={`/detailModule/${data.module.id}`} className='h6 text-dark'>
                           {data.module.name}
                     </Link>
                       </td>
                     <td>{data.module.code}</td>
                     <td>{data.module.hour}</td>
                     <td>
-                      <Link to={`/editModule/${data.module.id}`}  className='btn btn-warning ml-5'>Edit</Link>
+                      <Link to={`/editModule/${data.module.id}`}  className='text-primary'>Modifier</Link>
                       {/* <a href="/editModule/{data.module.id}" className='btn btn-warning ml-5'>Edit</a> */}
                       </td>
-                    <td><button className="btn btn-sm btn-danger">Delete</button></td>
+                      <td>
+                      <a href='#' onClick={()=>deleteModule(data.module.id)}  className='text-danger'>Supprimer</a>
+                      </td>
                     </tr>
                     )
                 })}

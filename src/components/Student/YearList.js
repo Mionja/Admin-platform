@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Student from './ListStudent';
 
 function YearList(props) {
@@ -24,12 +23,6 @@ function YearList(props) {
     }
   return (
     <>
-
-        <div>
-            <h3 className="mb-2">
-                <Link to={'/'}>Dashboard</Link>
-            </h3>
-        </div>
        {/** Choose the year */}
        <div className='row'>
                 <div className="col-4"></div>
