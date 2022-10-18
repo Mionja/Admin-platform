@@ -36,7 +36,11 @@ function   Table (){
                     //     </>})
                     return(
                     <tr key={prof.teacher.id}>
-                        <td>{prof.teacher.name}</td>
+                        <td>
+                        <Link to={`/detailTeacher/${prof.teacher.id}`}>
+                            <button className='text-dark h6'>{prof.teacher.name}</button>
+                        </Link>
+                            </td>
                         <td>{prof.teacher.email}</td>
                         <td>
                         <Link to={`/editTeacher/${prof.teacher.id}`}>

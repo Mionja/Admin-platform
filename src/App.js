@@ -19,6 +19,7 @@ import EditModule from './components/Module/EditModule';
 import ListTeacher from './components/Teacher/ListTeacher';
 import AddTeacher from './components/Teacher/AddTeacher';
 import EditTeacher from './components/Teacher/EditTeacher';
+import DetailTeacher from './components/Teacher/DetailTeacher';
 
 import Marks from './components/Mark/Marks';
 import HeaderRetake_exam from './components/Retake_exam/Header';
@@ -50,7 +51,8 @@ export default function App() {
           {/* Route resaka mpampianatra */}
             <Route path='/teacher' element={<ListTeacher/>} />
             <Route path="/addTeacher" element={<AddTeacher/>}/>      
-            <Route path="/editTeacher/:id" element={<EditTeacher/>}/>        
+            <Route path="/editTeacher/:id" element={<EditTeacher/>}/>     
+            <Route path="/detailTeacher/:id" element={<DetailTeacher/>}/>        
 
           {/* Route resaka rattrapages rehetra */}
           <Route path="/retake-exam" element={<HeaderRetake_exam/>}/>        
