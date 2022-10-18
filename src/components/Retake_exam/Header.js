@@ -21,11 +21,10 @@ function HeaderRetake_exam() {
               onClick={() => setGrade('M1')}>M1</a>
   
               <a href="#" className="col-2 btn btn-warning"
-              onClick={() => setGrade('M2')}>M2</a>
-                      
+              onClick={() => setGrade('M2')}>M2</a>          
          </div>
-  
-          <Modules grade={grade} />
+         
+         <Modules grade={grade} />
       </>
     )
 }

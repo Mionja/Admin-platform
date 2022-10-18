@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
 import './assets/admin/css/styles.css';
 import './assets/admin/js/scripts';
@@ -26,6 +27,11 @@ import HeaderRetake_exam from './components/Retake_exam/Header';
 // import MarksExcel from './components/Mark/MarksExcel';
 
 export default function App() {
+  
+axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.headers.delete['Accept'] = 'application/json';
+axios.defaults.headers.delete['Content-Type'] = 'application/json';
+
   return (
     
     <div>

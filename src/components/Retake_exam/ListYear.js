@@ -27,18 +27,46 @@ function ListYear(props) {
        <div className='row'>
             <div className="col-4"></div>
             <div className='col-8'>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#"
+                <ul className="pagination">
+                    <li className="page-item"><a className="page-link" href="#"
                     onClick={Previous}>Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#"
-                    onClick={() => setYear(2019)}>2019</a></li>
-                    <li class="page-item"><a class="page-link" href="#"
+                    {
+                        (year === 2019) ? 
+                        <li className="page-item active" id='2019'><a className="page-link" href="#"
+                        onClick={() => setYear(2019)}>2019</a></li>
+                        :
+                        <li className="page-item" id='2019'><a className="page-link" href="#"
+                        onClick={() => setYear(2019)}>2019</a></li>
+                    }
+                    
+                    {
+                        (year === 2020) ? 
+                    <li className="page-item active"><a className="page-link" href="#"
                     onClick={() => setYear(2020)}>2020</a></li>
-                    <li class="page-item"><a class="page-link" href="#"
+                    :
+                    <li className="page-item"><a className="page-link" href="#"
+                    onClick={() => setYear(2020)}>2020</a></li>
+                    }
+
+                    {
+                        (year === 2021) ? 
+                    <li className="page-item active"><a className="page-link" href="#"
                     onClick={() => setYear(2021)}>2021</a></li>
-                    <li class="page-item active"><a class="page-link" href="#"
-                        onClick={() => setYear(2022)}>2022</a></li>
-                    <li class="page-item"><a class="page-link" href="#"
+                    :
+                    <li className="page-item"><a className="page-link" href="#"
+                    onClick={() => setYear(2021)}>2021</a></li>
+                    }
+
+                    {
+                        (year === 2022) ? 
+                    <li className="page-item active"><a className="page-link" href="#"
+                    onClick={() => setYear(2022)}>2022</a></li>
+                    :
+                    <li className="page-item"><a className="page-link" href="#"
+                    onClick={() => setYear(2022)}>2022</a></li>
+                    }
+
+                    <li className="page-item"><a className="page-link" href="#"
                     onClick={Next}>Next</a></li>
                 </ul>
             </div>

@@ -15,7 +15,7 @@ function Students(props) {
   }
   return (
     <div>
-      <h2>Il y a {data.length} étudiant(s)</h2>
+      <h2>Il y a {data.length} étudiant(s) manao rattrapage tam année scolaire {props.year}</h2>
       <table className='table table-bordered table-active mt-5'>
         <thead>
           <th>Nom</th>

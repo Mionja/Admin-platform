@@ -22,8 +22,8 @@ function EditStudent() {
       console.log(student);
 
       const res = await axios({
-          method: 'PATCH',
-          url: "http://127.0.0.1:8000/api/student",
+          method: 'PUT',
+          url: `http://127.0.0.1:8000/api/student/${id}`,
           data: student,
         })
       if (res.status === 200 ){
