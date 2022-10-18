@@ -50,7 +50,7 @@ export default function App() {
           {/* Route resaka mpampianatra */}
             <Route path='/teacher' element={<ListTeacher/>} />
             <Route path="/addTeacher" element={<AddTeacher/>}/>      
-            <Route path="/editTeacher" element={<EditTeacher/>}/>        
+            <Route path="/editTeacher/:id" element={<EditTeacher/>}/>        
 
           {/* Route resaka rattrapages rehetra */}
           <Route path="/retake-exam" element={<HeaderRetake_exam/>}/>        

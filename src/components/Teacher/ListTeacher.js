@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import List from './List';
+
 
 function   Table (){
     const [data,setData] = useState ([]);
@@ -12,7 +12,7 @@ function   Table (){
         setData(res.data)
     })
     },[]);
-    console.log(data);
+
     return (
         <div>
             <h1 align = 'center' className='mt-3'>Les listes des Professeurs</h1>
@@ -38,7 +38,11 @@ function   Table (){
                     <tr key={prof.teacher.id}>
                         <td>{prof.teacher.name}</td>
                         <td>{prof.teacher.email}</td>
-                        <td><button className='text-primary'>Modifier</button></td>
+                        <td>
+                        <Link to={`/editTeacher/${prof.teacher.id}`}>
+                            <button className='text-primary'>Modifier</button>
+                        </Link>
+                        </td>
                     </tr>)
                 })
                 

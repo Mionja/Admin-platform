@@ -1,142 +1,147 @@
-import React, {useState, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+import loading from './../../assets/loading.gif';
+import './../../assets/admin/css/util.css';
+import './../../assets/admin/css/main.css';
+import { useNavigate, useParams, Link } from 'react-router-dom'
 
-function EditCategory(props) 
+
+function Professeurs() 
 {
-    // const history = useNavigate();
-    // const [loading, setLoading] = useState(true);
-    // const [categoryInput, setCategory] = useState([]);
-    // const [error, setError] = useState([]);
+  const history = useNavigate();
+  const {id} = useParams();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [diploma, setDiploma] = useState('');
+  const [module_id, setModule_id] = useState( 1 );
+  const [data ,  setData] = useState ([]);
+  let[teacher, setTeacher] = useState();
+  let[isLoading, setIsLoading] = useState(true);
 
-    // useEffect(() => {
-        
-    //     const category_id = props.match.params.id;
-    //     axios.get(`/api/edit-category/${category_id}`).then(res=>{
-    //         if(res.data.status === 200)
-    //         {
-    //             setCategory(res.data.category);
-    //         }
-    //         else if(res.data.status === 404)
-    //         {
-    //             swal("Error",res.data.message,"error");
-    //             history.push('/admin/view-category');
-    //         }
-    //         setLoading(false);
-    //     });
+  const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    // }, [props.match.params.id, history]);
+      const teacher = { name, email, diploma, module_id };
+      console.log(teacher);
 
-    // const handleInput = (e) => {
-    //     e.persist();
-    //     setCategory({...categoryInput, [e.target.name]: e.target.value });
-    // }
+      const res = await axios({
+          method: 'PUT',
+          url: `http://127.0.0.1:8000/api/teacher/${id}`,
+          data: teacher,
+        })
+        if (res.status === 200) {
+          console.log(res);
+          Swal.fire({
+            icon: 'success',
+            title: 'Professeur modifié avec Succes',
+            showConfirmButton: true,
+          })
+        }
+    }
 
-    // const updateCategory = (e) => {
-    //     e.preventDefault();
-        
-    //     const category_id = props.match.params.id;
-    //     const data = categoryInput;
-    //     axios.put(`/api/update-category/${category_id}`, data).then(res=>{
-    //         if(res.data.status === 200)
-    //         {
-    //             swal("Success",res.data.message,"success");
-    //             setError([]);
-    //         }
-    //         else if(res.data.status === 422)
-    //         {
-    //             swal("All fields are mandetory","","error");
-    //             setError(res.data.errors);
-    //         }
-    //         else if(res.data.status === 404)
-    //         {
-    //             swal("Error",res.data.message,"error");
-    //             history.push('admin/view-category');
-    //         }
-    //     });
-    // }
+useEffect (() =>{
+  axios.all([
+    axios.get('http://localhost:8000/api/module').then((res)=>{
+     setData(res.data)
+    }),
+    axios.get(`http://localhost:8000/api/teacher/${id}`).then((res)=>{
+        setTimeout(() => {
+            setTeacher(res.data);
+            setIsLoading(false);
+          }, 3000);
+    }),
+  ])
+ },[]);
 
-    // if(loading)
-    // {
-    //     return <h4>Ajout des professeurs...</h4>
-    // }
+return (
+ 
+  <div class="limiter">
+		<div class="container-login100" >
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            { (isLoading) ? <p className="text-center h3">Please, wait a moment...<img src={loading}/></p>: 
+				<form class="login100-form validate-form"  onSubmit={ handleSubmit }>
+					<span class="login100-form-title p-b-49">
+						Modification professeur
+					</span>
 
-    return (
-        <div className="container px-4">
-            <h1>Test edit proffesseur</h1>
-            {/* <div className="card mt-4">
-                <div className="card-header">
-                    <h4>Edit Category 
-                        <Link to="/admin/view-category" className="btn btn-primary btn-sm float-end">BACK</Link>
-                    </h4>
-                </div>
-                <div className="card-body">
+					<div class="wrap-input100 validate-input m-b-23" >
+						<span class="label-input100" > Nom </span>
+						<input class="input100"
+                  id="name" 
+                  type="text"
+                  name="name"
+                  value = {teacher.teacher.name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="form-control"  ></input>
+						
+					</div>
 
-                    <form onSubmit={updateCategory}>
-                        <ul className="nav nav-tabs" id="myTab" role="tablist">
-                            <li className="nav-item" role="presentation">
-                                <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-                            </li>
-                            <li className="nav-item" role="presentation">
-                                <button className="nav-link" id="seo-tags-tab" data-bs-toggle="tab" data-bs-target="#seo-tags" type="button" role="tab" aria-controls="seo-tags" aria-selected="false">SEO Tags</button>
-                            </li>
-                        </ul>
-                        <div className="tab-content" id="myTabContent">
-                            <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<div class="wrap-input100 validate-input" >
+						<span class="label-input100">Email</span>
+						<input class="input100" 
+                  id="email" 
+                  type="email"
+                  name="email"
+                  value={teacher.teacher.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-control"></input>
+						
+					</div>
+          <div class="text-right p-t-8 p-b-31">
+						<a href="#">
+						</a>
+					</div>
 
-                                <div className="form-group mb-3">
-                                    <label>Slug</label>
-                                    <input type="text" name="slug" onChange={handleInput} value={categoryInput.slug} className="form-control" />
-                                    <small className="text-danger">{error.slug}</small>
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label>Name</label>
-                                    <input type="text" name="name" onChange={handleInput} value={categoryInput.name} className="form-control" />
-                                    <small className="text-danger">{error.name}</small>
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label>Description</label>
-                                    <textarea name="description" onChange={handleInput} value={categoryInput.description} className="form-control"></textarea>
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label>Status</label>
-                                    <input type="checkbox" name="status" onChange={handleInput} value={categoryInput.status} /> Status 0=shown/1=hidden
-                                </div>
-
-                            </div>
-                            <div className="tab-pane card-body border fade" id="seo-tags" role="tabpanel" aria-labelledby="seo-tags-tab">
-
-                                <div className="form-group mb-3">
-                                    <label>Meta Title</label>
-                                    <input type="text" name="meta_title" onChange={handleInput} value={categoryInput.meta_title} className="form-control" />
-                                    <small className="text-danger">{error.meta_title}</small>
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label>Meta Keywords</label>
-                                    <textarea name="meta_keyword" onChange={handleInput} value={categoryInput.meta_keyword} className="form-control"></textarea>
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label>Meta Description</label>
-                                    <textarea name="meta_descrip" onChange={handleInput} value={categoryInput.meta_descrip} className="form-control"></textarea>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className='row'>
-                                <button type='submit' value="envoyer"  className="btn btn-primary ">
-                                Enregistrer
-                                </button>
-                                <Link to={'/module'}>
-                                    <p className='text-center mt-2' >Revenir dans liste professeurs? <a href="#">Retour</a></p>
-                                </Link>
-                        </div>
-                    </form>
-
-                </div>
-            </div> */}
-        </div>
-    )
+          <div class="wrap-input100 validate-input m-b-23" >
+						<span class="label-input100">Diplome</span>
+						<input class="input100" 
+                  id="diploma"
+                  type="text"
+                   name="diploma"
+                  value={teacher.teacher.diploma}
+                  onChange={(e) => setDiploma(e.target.value)}
+                  className="form-control"  ></input>
+					
+					</div>
+            <div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+						<span class="label-input100"> Code module </span>
+                    <select className="form-control"
+                    id='module_id'
+                    name="module_id"
+                    value={module_id} 
+                    onChange={(e) => setModule_id(e.target.value)}>
+                      {data.map((Item)=>{
+                      return( 
+                        
+                         <option value={Item.module.id} >{Item.module.code}</option>  
+                            )
+                       })}
+                    </select>
+                    </div>
+					<div class="text-right p-t-8 p-b-31">
+						<a href="#">
+						</a>
+					</div>
+				  <div className='row'>
+          <button type='submit' value="envoyer"  className="btn btn-primary ">
+           Enregistrer
+           </button>
+           <Link to={'/teacher'}>
+            <p className='text-center mt-2' >Revenir dans liste professeurs? <a href="#">Retour</a></p>
+           </Link>
+           </div>
+           <div class="text-right p-t-8 p-b-31">
+						<a href="#">
+						</a>
+					</div>
+						
+				</form>
+    }
+			</div>
+		</div>
+	</div>
+  )  
 }
+export default Professeurs;
 
-export default EditCategory;
