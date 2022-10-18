@@ -42,9 +42,9 @@ function ListYear(props) {
                     onClick={Next}>Next</a></li>
                 </ul>
             </div>
-        </div>
+       </div>
 
-        <Students grade={props.grade} year={year}/>
+        <Students module={props.module} year={year}/>
     </div>
   )
 }

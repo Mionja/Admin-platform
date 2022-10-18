@@ -10,6 +10,7 @@ import {
   } from 'chart.js';
   import { Bar, Doughnut, Pie } from 'react-chartjs-2';
   import React, {useState, useEffect} from "react";
+  import {Link} from 'react-router-dom'
   import axios from 'axios';
   import '../../assets/style.css';
   
@@ -217,7 +218,11 @@ function Marks(props) {
                     {sup10.map((data)=>{
                     return(
                         <tr key={data.data.student.id}>
-                            <td className='text-center'>{data.data.student.name}</td>
+                            <td className='text-center'>
+                                <Link to={`/detailStudent/${data.data.student.id}`}  className='h6'>
+                                    {data.data.student.name}
+                                </Link>
+                            </td>
                             <td className='text-center'>{data.data.student.email}</td>
                             <td className='text-center'>
                             { data.data.student.gender ==='M'? "Masculin": "Feminin" }
@@ -248,7 +253,11 @@ function Marks(props) {
                     {inf10.map((data)=>{
                     return(
                         <tr key={data.data.student.id}>
-                            <td className='text-center'>{data.data.student.name}</td>
+                            <td className='text-center'>
+                                <Link to={`/detailStudent/${data.data.student.id}`}  className='h6'>
+                                    {data.data.student.name}
+                                </Link>
+                            </td>
                             <td className='text-center'>{data.data.student.email}</td>
                             <td className='text-center'>{data.data.student.gender}</td>
                             <td className='text-center'>{data.data.group}</td>
