@@ -51,9 +51,6 @@ function Students(props) {
       }
         </tbody>
       </table>
-      
-
-    
     </div>
   )
 }

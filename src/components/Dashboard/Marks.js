@@ -51,35 +51,37 @@ function Marks(props) {
     var inf10 = data;
     sup10 = data.filter(data => ( data.data.average_point.data >= 10));
     inf10 = data.filter(data => ( data.data.average_point.data < 10));
-    let [nbr_moyenne, setNbr_moyenne] = useState(0)
-    let [nbr_pasmoyenne, setNbr_pasmoyenne] = useState(0)
-    let [nbrFilleMoyenne , setNbrFilleMoyenne]= useState(0)
-    let [nbrGarconMoyenne , setNbrGarconMoyenne]= useState(0)
-    let [nbrFillePasMoyenne , setNbrFillePasMoyenne]= useState(0)
-    let [nbrGarconPasMoyenne , setNbrGarconPasMoyenne]= useState(0)
-    let [nbrParticipation  , setNbrParticipation]= useState(0)
-    let [nbrNonParticipation , setNbrNonParticipation]= useState(0)
-    
+  
+    let[ graph, setGraph ] = useState([]);
+    let[isLoadingGraph, setIsLoadingGraph] = useState(true)
     
     useEffect(() => {
+        axios.all([
             axios.get (`http://localhost:8000/api/student/average-point/${props.grade}/${props.year}`)
             .then((res)=>{
-                setTimeout(() => {
-                    console.log('data',data);
-                    setData(res.data);
-                    setIsLoading(false);
-                  }, 2000);
-             })   ;         
+                console.log('data',res.data);
+                setData(res.data);
+             }),  
 
-             setParticipation({
+             axios.get (`http://localhost:8000/api/student/data/graph-specific/${props.grade}/${props.year}`)
+            .then((res)=>{
+                setTimeout(() => {
+                    console.log('graph', res.data);
+                    setGraph(res.data);
+                    setIsLoadingGraph(false)    
+                }, 2000);
+                
+             })   
+        ])
+          if(! isLoadingGraph)  {
+            setParticipation({
                 labels: ["Ont participé", "N'ont pas participé"],
                 datasets: [
                     {
                         label: "Liste de participation des etudiants",
-                        data: [nbrParticipation, nbrNonParticipation],
+                        data: [graph.partipating, graph.not_partipating],
                         backgroundColor: ["cyan","red"],
                     },
-                   
                 ],
             });
         
@@ -88,7 +90,7 @@ function Marks(props) {
                 datasets: [
                     {
                         label: "Liste de ceux qui ont la moyenne parmis ceux qui ont participé",
-                        data: [nbr_moyenne, nbr_pasmoyenne],
+                        data: [10,0],
                         backgroundColor: ["cyan","red"],
                     },
                    
@@ -101,7 +103,7 @@ function Marks(props) {
                 datasets: [
                     {
                         label: "Ceux qui ont eu la moyenne",
-                        data: [nbrFilleMoyenne, nbrGarconMoyenne],
+                        data: [5, 5],
                         borderColor: ["green","red"],
                         backgroundCololr: ["red","green"],
                     },
@@ -114,7 +116,7 @@ function Marks(props) {
                 datasets: [
                     {
                         label: "Ceux qui n'ont pas eu la moyenne",
-                        data: [nbrFillePasMoyenne, nbrGarconPasMoyenne],
+                        data: [0, 0],
                         borderColor: ["green","red"],
                         backgroundCololr: ["red","yellow"],
                     },
@@ -134,43 +136,11 @@ function Marks(props) {
                     },
                 },
             })
-        
+   
+          }
             
-                data.forEach(data => {
-                   if (data.data.average_point.data >= 10) {
-                    console.log('moyenne');
-                       setNbr_moyenne(nbr_moyenne++)
-                       setNbrParticipation(nbrParticipation++)
-            
-                       if (data.data.student.gender == 'F') {
-                           setNbrFilleMoyenne(nbrFilleMoyenne++)
-                           console.log('fille');
-                       }
-                       else if (data.data.student.gender == 'M') {
-                           setNbrGarconMoyenne(nbrGarconMoyenne++)
-                           console.log('Garçon');
-                       }
-                   }
-                   else{
-                       setNbr_pasmoyenne(nbr_pasmoyenne++)
-                       setNbrParticipation(nbrParticipation++)
-                console.log('pas moyenne');
-                       if (data.data.student.gender == 'F') {
-                           setNbrFillePasMoyenne(nbrFillePasMoyenne++)
-                       }
-                       else if (data.data.student.gender == 'M') {
-                           setNbrGarconPasMoyenne(nbrGarconPasMoyenne++)
-                       }
-            
-                       if (data.data.average_point === 0) {
-                           setNbrNonParticipation(nbrNonParticipation++)
-                       }
-                   }
-               })
-    
     }, [props.grade, props.year])
 
-        console.log('after',data);
     
   
 
