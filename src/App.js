@@ -29,6 +29,8 @@ import HeaderRetake_exam from './components/Retake_exam/Header';
 export default function App() {
   
 axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.delete['Accept'] = 'application/json';
 axios.defaults.headers.delete['Content-Type'] = 'application/json';
 

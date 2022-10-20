@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import ListYear from './ListYear';
+import Students from './Students';
+
 
 function Modules(props) {
     let[module, setModule] = useState();
@@ -11,26 +12,26 @@ function Modules(props) {
         }).then((data)=>{
           setData(data.list_module)
         })
-  },[props.grade]);
+    },[props.grade]);
 
   return (
     <div>
       <div class="wrap-input100 validate-input mt-3" width={30+"%"}>
         <select className="form-control text-center"
-        id='module'
-        name="module"
-        value={module} 
-        onChange={(e) => setModule(e.target.value)}>
-          <option value=''>--Liste de tous les modules en {props.grade}--</option>
-          {data.map((Item)=>{
-          return( 
-              <option value={Item.module.id} >{Item.module.code}</option>  
-                )
+          id='module'
+          name="module"
+          value={module} 
+          onChange={(e) => setModule(e.target.value)}>
+            <option value=''>--Liste de tous les modules en {props.grade}--</option>
+            {data.map((Item)=>{
+            return( 
+                <option value={Item.module.id} >{Item.module.code}</option>  
+                  )
             })}
         </select>
       </div>
 
-      <ListYear module={module}/>
+      <Students module={module}/>
     </div>
   )
 }
