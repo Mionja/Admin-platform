@@ -8,7 +8,7 @@ const AddStudent = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [grade, setGrade] = useState('');
+    const [grade, setGrade] = useState('L1');
     const [group, setGroup] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
@@ -115,6 +115,8 @@ const AddStudent = () => {
 						<input className="input100" 
                     id="age" 
                     name="age" 
+                    min={15}
+                    max={60}
                     required 
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
@@ -145,10 +147,21 @@ const AddStudent = () => {
                         name="grade" 
                         value={group}
                         onChange={(e) => setGroup(e.target.value)}>
-                            <option value="G1">Groupe 1</option>
-                            <option value="G2">Groupe 2</option>
-                            <option value="E-DEV">E-DEV</option>
-                            <option value="RSI">RSI</option>
+                            <option value=""></option>
+
+                            {
+                                (grade !=='L1')
+                                ?
+                                <>
+                                <option value="E-DEV">E-DEV</option>
+                                <option value="RSI">RSI</option>
+                                </>
+                                :
+                                <>
+                                <option value="G1">Groupe 1</option>
+                                <option value="G2">Groupe 2</option>
+                                </>
+                                }
                         </select>
                     </div>
 
@@ -157,10 +170,11 @@ const AddStudent = () => {
 						<span className="label-input100" > Année scolaire </span>
 						<input className="input100" 
                   id="school_year" 
-                  name="school_year" 
+                  type="number"
+                  min={2018}
+                  max={2023}
                   value={school_year}
                   onChange={(e) => setSchool_year(e.target.value)}
-                   type="text"
                   classNameName="form-control"  ></input>
 						
 					</div>
