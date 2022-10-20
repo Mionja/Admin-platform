@@ -24,6 +24,7 @@ import DetailTeacher from './components/Teacher/DetailTeacher';
 
 import Marks from './components/Mark/Marks';
 import HeaderRetake_exam from './components/Retake_exam/Header';
+import SendNotification from './components/Retake_exam/SendNotification';
 // import MarksExcel from './components/Mark/MarksExcel';
 
 export default function App() {
@@ -63,7 +64,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path="/detailTeacher/:id" element={<DetailTeacher/>}/>        
 
           {/* Route resaka rattrapages rehetra */}
-          <Route path="/retake-exam" element={<HeaderRetake_exam/>}/>        
+          <Route path="/retake-exam" element={<HeaderRetake_exam/>}/>     
+          <Route path="/sendNotification/:module" element={<SendNotification   />}/>     
 
         </Routes>
       </div>
