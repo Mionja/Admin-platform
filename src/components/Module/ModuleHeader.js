@@ -1,7 +1,6 @@
 import '../../assets/style.css';
-import ListModule from './ListModule';
 import React, { useState } from 'react'
-
+import YearList from './YearList';
 function ModuleHeader() {
     let [grade, setGrade] = useState('L1');
   return (
@@ -25,7 +24,7 @@ function ModuleHeader() {
                     
         </div>
 
-        <ListModule grade={grade} />
+        <YearList grade={grade}/>
     </div>
   )
 }

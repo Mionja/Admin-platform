@@ -10,13 +10,13 @@ function ListModule(props) {
   }
 
   useEffect (() =>{
-      fetch(`http://localhost:8000/api/module/list/${props.grade}`).then((res)=>{
+      fetch(`http://localhost:8000/api/module/list/${props.grade}/${props.year}`).then((res)=>{
           return res.json()
       }).then((data)=>{
         //console.log(data.list_module)
         setData(data.list_module)
       })
-},[props.grade]);
+},[props.grade, props.year]);
 
 
 return (
@@ -31,7 +31,8 @@ return (
             <thead class="thead-dark">
             <tr>
             <td>Nom</td>
-            <td>code</td>
+            <td>Code</td>
+            <td>Coef</td>
             <td>Heure</td>
             <td colSpan={2}></td>
             </tr>
@@ -47,6 +48,7 @@ return (
                     </Link>
                       </td>
                     <td>{data.module.code}</td>
+                    <td>{data.module.credits}</td>
                     <td>{data.module.hour}</td>
                     <td>
                       <Link to={`/editModule/${data.module.id}`}  className='text-primary'>Modifier</Link>

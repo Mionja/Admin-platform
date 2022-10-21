@@ -7,12 +7,12 @@ function Modules(props) {
     let [data,setData] = useState ([]);
 
     useEffect (() =>{
-        fetch(`http://localhost:8000/api/module/list/${props.grade}`).then((res)=>{
+        fetch(`http://localhost:8000/api/module/list/${props.grade}/${props.year}`).then((res)=>{
             return res.json()
         }).then((data)=>{
           setData(data.list_module)
         })
-    },[props.grade]);
+    },[props.grade, props.year]);
 
   return (
     <div>
