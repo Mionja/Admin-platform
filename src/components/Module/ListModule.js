@@ -23,7 +23,9 @@ return (
    
       <div>
             <h1 align = 'center' className="mt-3 mb-5">Les listes de module des {props.grade}</h1>
-
+            <Link to={`/copyModules/${props.grade}/${props.year}`}>
+              <button className="btn btn-warning float-right">Copier tous ces modules</button>
+            </Link>
             <Link to={'/addModule'}>
               <button className="btn btn-info float-right mr-5">Ajouter une module</button>
             </Link>

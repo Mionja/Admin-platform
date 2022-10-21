@@ -16,6 +16,7 @@ import ModuleHeader from './components/Module/ModuleHeader';
 import DetailModule from './components/Module/DetailModule';
 import AddModule from './components/Module/AddModule';
 import EditModule from './components/Module/EditModule';
+import CopyModule from './components/Module/CopyModule';
 
 import ListTeacher from './components/Teacher/ListTeacher';
 import AddTeacher from './components/Teacher/AddTeacher';
@@ -55,7 +56,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path='/module' element={<ModuleHeader/>} />
             <Route path='/detailModule/:id' element={<DetailModule/>} />
             <Route path="/addModule" element={<AddModule/>}/>      
-            <Route path="/editModule/:id" element={<EditModule/>}/>        
+            <Route path="/editModule/:id" element={<EditModule/>}/>  
+            <Route path="/copyModules/:grade/:year" element={<CopyModule/>}/>        
 
           {/* Route resaka mpampianatra */}
             <Route path='/teacher' element={<ListTeacher/>} />
