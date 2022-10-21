@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 function Students(props) {
   let [data, setData] = useState([]);
   useEffect(() =>{
-    fetch(`http://localhost:8000/api/student/list-retaking-exam/${props.module}`).then((res)=>{
+    fetch(`http://localhost:8000/api/student/list-retaking-exam/${props.module}/${props.year}`).then((res)=>{
         return res.json()
     }).then((data)=>{
       console.log('data',data);
       setData(data)
     })
-  },[props.module]);
+  },[props.module, props.year]);
  
   if (! props.module) {
     return <h1 className='text-danger text-center mt-5'>Veuillez choisir une module</h1>

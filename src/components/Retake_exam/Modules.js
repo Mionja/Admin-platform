@@ -31,7 +31,7 @@ function Modules(props) {
         </select>
       </div>
 
-      <Students module={module}/>
+      <Students module={module} year={props.year}/>
     </div>
   )
 }
