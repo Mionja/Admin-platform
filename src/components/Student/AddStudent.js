@@ -29,7 +29,7 @@ const AddStudent = () => {
           console.log(res.data.status);
           Swal.fire({
             icon: 'success',
-            title: 'Module Ajouter avec Succes',
+            title: 'Etudiant Ajouter avec Succes',
             showConfirmButton: true,
           })
         }        
@@ -106,6 +106,7 @@ const AddStudent = () => {
                     <select className="form-control"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}>
+                       <option value=""></option> 
                        <option value="M">Femme</option>
                         <option value="F">Homme</option>
                     </select>

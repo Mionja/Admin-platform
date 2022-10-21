@@ -6,9 +6,9 @@ import Swal from 'sweetalert2';
 
 
 function Marks() {
-    const [module_id, setModule_id] = useState(0);
+    const [module, setModule] = useState(0);
     const [email, setEmail] = useState(''); 
-    const [semester, setSemester] = useState();
+    const [semester, setSemester] = useState(1);
     let [year, setYear] = useState(2022);
     const [score, setScore] = useState();
     let[data, setData] = useState([]);
@@ -17,7 +17,7 @@ function Marks() {
     const handlesubmit = async (e) => {
       e.preventDefault();
 
-      const note = { email, module_id, semester, year, score};
+      const note = { email, module, semester, year, score};
       console.log(note);
 
       const res = await axios({
@@ -46,7 +46,7 @@ function Marks() {
         .then((res)=>{setStudent(res.data)}),
         ])
      },[]);
-console.log(module_id);
+console.log(module);
   return (
     <div class="limiter">
 		<div class="container-login100" >
@@ -77,12 +77,13 @@ console.log(module_id);
                     <select className="form-control"
                     id='module_id'
                     name="module_id"
-                    value={module_id} 
-                    onChange={(e) => setModule_id(e.target.value)}>
+                    value={module} 
+                    onChange={(e) => setModule(e.target.value)}>
+                         <option value=''></option>  
                       {data.map((Item)=>{
                       return( 
                         
-                         <option value={Item.module.id} >{Item.module.code}</option>  
+                         <option value={Item.module.code} >{Item.module.code}</option>  
                             )
                        })}
                     </select>
