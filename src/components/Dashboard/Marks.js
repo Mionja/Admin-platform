@@ -44,9 +44,9 @@ function Marks(props) {
             (isLoadingGraph)? <h2>Loading...</h2>:
             <ListMarks data={graph}/>
         }
-
-    {/* List of students with their average points and retake module */}
-        <div className='mt-4'>
+        {
+            (data.message === 'Fail') ? <p>Fail </p> :
+            <div className='mt-4'>
             <div>
                 <b className='ml-3' style={{color: 'black'}}>
                     Liste des etudiants qui ont eu la moyenne:
@@ -117,7 +117,8 @@ function Marks(props) {
                     </tbody>
                 </table>
             </div>
-        </div>
+            </div>
+        }
 
     </div>
   )

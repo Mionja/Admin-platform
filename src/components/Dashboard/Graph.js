@@ -29,13 +29,13 @@ function Graph(props) {
 
     useEffect(() => {
         axios.get (`http://localhost:8000/api/student/data/graph-general/${props.grade}`)
-             .then((res)=>{
-                setTimeout(() => {
-                    console.log('ee', res.data);
-                    setGraph(res.data);
-                    setIsLoadingGraph(false)    
-                }, 2000);
-            })
+            .then((res)=>{
+            setTimeout(() => {
+                console.log('ee', res.data);
+                setGraph(res.data);
+                setIsLoadingGraph(false)    
+            }, 2000);
+        })
     }, [props.grade]);
 
 
@@ -50,7 +50,7 @@ function Graph(props) {
         }
        
         {/** Choose the year */}
-        <div className='row'>
+        {/* <div className='row'>
             <div class="col-4"></div>
             <ul class="pagination div col-8">
                 <li class="page-item"><a class="page-link" href="#"
@@ -95,7 +95,7 @@ function Graph(props) {
             </ul>
         </div>
 
-        <Marks year={year} grade={props.grade}/>
+        <Marks year={year} grade={props.grade}/> */}
     </div>
   )
 }
