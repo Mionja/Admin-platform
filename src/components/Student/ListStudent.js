@@ -41,6 +41,10 @@ else if (gender !== '') {
         <div>
              <h2 className="text-center mt-4">
                 LISTE DES ETUDIANT EN {props.grade} ({props.school_year - 1} - {props.school_year })
+                <Link to={`/addMark/${props.grade}/${props.school_year}`} 
+                    className="btn btn-warning ml-5">
+                    Ajouter note
+                </Link>
                 </h2>
             <hr/>
 

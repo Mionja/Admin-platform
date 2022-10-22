@@ -11,6 +11,7 @@ import HeaderStudent from './components/Student/HeaderStudent';
 import AddStudent from "./components/Student/AddStudent";
 import EditStudent from "./components/Student/EditStudent";
 import DetailStudent from './components/Student/DetailStudent';
+import AddMark from './components/Student/AddMark';
 
 import ModuleHeader from './components/Module/ModuleHeader';
 import DetailModule from './components/Module/DetailModule';
@@ -50,6 +51,7 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path="/editStudent/:id" element={<EditStudent/>}/> 
             <Route path="/detailStudent/:id" element={<DetailStudent/>}/>    
             <Route path="/mark" element={<Marks/>}/>     
+            <Route path="/addMark/:grade/:year" element={<AddMark/>}/>     
             {/* <Route path="/mark" element={<MarksExcel/>}/>     */}
                    
           {/* Route resaka module*/}
