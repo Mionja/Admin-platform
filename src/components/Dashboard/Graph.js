@@ -50,7 +50,7 @@ function Graph(props) {
         }
        
         {/** Choose the year */}
-        {/* <div className='row'>
+        <div className='row'>
             <div class="col-4"></div>
             <ul class="pagination div col-8">
                 <li class="page-item"><a class="page-link" href="#"
@@ -95,7 +95,7 @@ function Graph(props) {
             </ul>
         </div>
 
-        <Marks year={year} grade={props.grade}/> */}
+        <Marks year={year} grade={props.grade}/>
     </div>
   )
 }
