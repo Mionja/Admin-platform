@@ -107,8 +107,8 @@ const AddStudent = () => {
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}>
                        <option value=""></option> 
-                       <option value="M">Femme</option>
-                        <option value="F">Homme</option>
+                       <option value="F">Femme</option>
+                        <option value="M">Homme</option>
                     </select>
                 </div>
                     <div className="wrap-input100 validate-input m-b-23 mt-4" data-validate = "Username is reauired">
