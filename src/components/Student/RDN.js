@@ -2,6 +2,8 @@ import React , {useState,useEffect,useRef} from "react"
 import axios from 'axios'
 import MarksList from "./MarksList";
 import { useReactToPrint } from "react-to-print";
+import logo from './../../assets/G_logo_esti.jpg'
+import { Link } from 'react-router-dom'
 
 function RDN(props) {
 
@@ -57,16 +59,23 @@ function RDN(props) {
   return (
     <div>
       { (isLoadingData) ? <p className="mt-5 ml-5 text-warning">Loading data marks...</p> :""}
-<hr/>
+    <hr/>
+    <Link to={`/RDN/semester/1/${props.year}/${props.id}`} className="btn btn-warning">
+      Semestre 1
+    </Link>
+    <Link to={`/RDN/semester/2/${props.year}/${props.id}`} className="btn btn-warning ml-5">
+      Semestre 2
+    </Link>
       <div   ref={componentRef} className="mt-3 ml-4">
+        <img src={logo} alt="Logo" height={100+"px"}/>
       { (isLoadingStudent) ? <>Loading personal info...</> : 
         <>
-            <h3>Relevé de note de {student.student.name} pendant l'année scolaire {props.year - 1}-{props.year}</h3>
-            <p>Email : {student.student.email}</p>
+          <h3>Relevé de note de {student.student.name} pendant l'année scolaire {props.year - 1}-{props.year}</h3>
+          <p>Email : {student.student.email}</p>
         </>
       }
 
-        {data && <MarksList data={data} />}
+        {data && <MarksList data={data}/>}
 
         {moyenne && 
           ( moyenne.message === 'Fail') ? <p>Tsy afaka mcalcul moyenne satria mbola misy examen tsy natao</p> : 

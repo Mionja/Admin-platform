@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState,useEffect} from "react"
 
 function MarksList({data}) {
   return (
@@ -12,24 +12,23 @@ function MarksList({data}) {
         </thead>
         <tbody> 
         {
-                data.map(data=>{
-                    return(
-                        <tr key={data.marks.id}>
-                            <td>{data.marks.module.code}</td>
-                            <td>{data.marks.module.name}</td>
-                            {  
-                              (data.marks.score < 10) ? 
-                               <td className='text-danger'>{data.marks.score} (à rattrapper)</td> 
-                              : <td>{data.marks.score}</td>
-                            }
-                            <td>{data.marks.semester}</td>
-                        </tr>
-                    )
-                })
-            }
+          data.map(data=>{
+            return(
+              <tr key={data.marks.id}>
+                  <td>{data.marks.module.code}</td>
+                  <td>{data.marks.module.name}</td>
+                  {  
+                    (data.marks.score < 10) ? 
+                      <td className='text-danger'>{data.marks.score} (à rattrapper)</td> 
+                    : <td>{data.marks.score}</td>
+                  }
+                  <td>{data.marks.semester}</td>
+              </tr>
+            )
+          }) 
+        }
         </tbody>
       </table>
-
     </div>
   )
 }
