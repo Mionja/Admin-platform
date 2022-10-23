@@ -6,21 +6,40 @@ import axios from 'axios';
 function Student (props)
 {
 
- const [data,setData] = useState ([]);
- const [group,setGroup] = useState ("");
- let [gender, setGender] = useState("");
- const history = useNavigate();
-const delteStudent = (id)=>{
-    fetch(`http://localhost:8000/student/${id}`, {
-        method: 'DELETE'
-      }).then(() => {
-        alert('Un etudiant supprimé')
-        history.push('/student');
-      }) 
-}
+    let [graph, setGraph] = useState('')
+    let[isLoadingGraph, setIsLoadingGraph] = useState(true)
+    const [data,setData] = useState ([]);
+    const [group,setGroup] = useState ("");
+    let [gender, setGender] = useState("");
+    const history = useNavigate();
+    let [year, setYear] = useState('LX'+props.school_year)
+    console.log(year);
+    const delteStudent = (id)=>{
+        fetch(`http://localhost:8000/student/${id}`, {
+            method: 'DELETE'
+        }).then(() => {
+            alert('Un etudiant supprimé')
+            history.push('/student');
+        }) 
+    }
+
     useEffect (() =>{
-        axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
-        .then((res)=>{setData(res.data)   })
+        axios.all([
+            axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
+            .then((res)=>{setData(res.data)   }),
+
+            axios.get (`http://127.0.0.1:8000/api/student/general/average_point/${props.grade}/${props.school_year}`)
+            .then((res)=>{
+                setIsLoadingGraph(true)
+                setTimeout(() => 
+                {
+                    console.log('ee', res.data);
+                    setGraph(res.data);
+                    setIsLoadingGraph(false)    
+                }, 2000)
+            })
+        ])
+        
     },[props.grade, props.school_year]);
 
 
@@ -41,46 +60,55 @@ else if (gender !== '') {
         <div>
              <h2 className="text-center mt-4">
                 LISTE DES ETUDIANT EN {props.grade} ({props.school_year - 1} - {props.school_year })
-                <Link to={`/addMark/${props.grade}/${props.school_year}`} 
-                    className="text-primary ml-5 h6">
+                <Link to={`/addMark/${props.grade}/${props.school_year}`} className="text-primary ml-5 h6">
                     Ajouter note
                 </Link>
-                <Link to={'/addStudent'} className="text-primary ml-5 h6"> Ajouter un etudiant</Link>
-                </h2>
+
+                <Link to={'/addStudent'} className="text-primary ml-5 h6">
+                    Ajouter un etudiant
+                </Link>
+                {
+                    (isLoadingGraph) ? <p>Loading...</p> : 
+
+                    (graph.message === 'Fail')?'': 
+                    <button className="btn btn-danger ml-5 h6">
+                        Afindra classe
+                    </button>
+                }
+            </h2>
             <hr/>
 
             <div  className="mt-3">
-            <form>
-                <label>Search </label> 
-                <select
-                value={group}
-                onChange={(e) => setGroup(e.target.value)}
-                >
-                <option value="">--Group--</option>    
-                { (props.grade == 'L1') ?
-                <>
-                    <option value="G1">Group 1</option>
-                    <option value="G2">Group 2</option>
-                </>
-                :
-                <>
-                    <option value="RSI">RSI</option>
-                    <option value="E-DEV">E-DEV</option>
-                </>
-                }
-                </select>
+                <form>
+                    <label>Search </label> 
+                    <select
+                    value={group}
+                    onChange={(e) => setGroup(e.target.value)}
+                    >
+                    <option value="">--Group--</option>    
+                    { (props.grade == 'L1') ?
+                    <>
+                        <option value="G1">Group 1</option>
+                        <option value="G2">Group 2</option>
+                    </>
+                    :
+                    <>
+                        <option value="RSI">RSI</option>
+                        <option value="E-DEV">E-DEV</option>
+                    </>
+                    }
+                    </select>
 
-                <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                >
-                <option value="">--Gender--</option>
-                <option value="F">Fille</option>
-                <option value="M">Garçon</option>
-               
-                </select>
-            </form>
-
+                    <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    >
+                    <option value="">--Gender--</option>
+                    <option value="F">Fille</option>
+                    <option value="M">Garçon</option>
+                
+                    </select>
+                </form>
 
                 <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
                 <thead>
@@ -110,9 +138,7 @@ else if (gender !== '') {
                     </tr>)
                 })}
                 </tbody>
-                </table>
-
-                
+                </table>  
             </div>
         </div>
     );
