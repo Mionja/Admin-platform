@@ -42,9 +42,10 @@ else if (gender !== '') {
              <h2 className="text-center mt-4">
                 LISTE DES ETUDIANT EN {props.grade} ({props.school_year - 1} - {props.school_year })
                 <Link to={`/addMark/${props.grade}/${props.school_year}`} 
-                    className="btn btn-warning ml-5">
+                    className="text-primary ml-5 h6">
                     Ajouter note
                 </Link>
+                <Link to={'/addStudent'} className="text-primary ml-5 h6"> Ajouter un etudiant</Link>
                 </h2>
             <hr/>
 
@@ -83,32 +84,29 @@ else if (gender !== '') {
 
                 <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
                 <thead>
-                    <tr className="mt-2 mb-3" style={{float:"right"}}>
-                        <Link to={'/addStudent'} className="text-primary">+ Ajouter un etudiant</Link>
-                    </tr>
+                
+                        <th className="text-center">name</th>
+                        <th className="text-center">email</th>
+                        <th className="text-center">group</th>
+                        <th className="text-center" colSpan={2}></th>
                 </thead>    
                 <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>email</td>
-                        <td>group</td>
-                        <td colSpan={2}></td>
-                    </tr>
                     {Fdata.map((students)=>{
                     return(
                     <tr key={students.student.id}>
-                    <td>
+                    <td  className="text-center" >
                         <Link to={`/detailStudent/${students.student.id}`}  className='h6'>
                             {students.student.name}
                         </Link>
                     </td>
-                    <td>{students.student.email}</td>
-                    <td>{students.group}</td>
+                    <td  className="text-center" >{students.student.email}</td>
+                    <td  className="text-center" >{students.group}</td>
                     <td>
-                        <Link to={`/editStudent/${students.student.id}`} className="btn btn-sm btn-warning">Edit</Link>
+                        <Link to={`/editStudent/${students.student.id}`} 
+                        className="btn btn-sm btn-warning">Modifier</Link>
                     </td>
                     <td><button className="btn btn-sm btn-danger"
-                    onClick={()=>delteStudent(students.student.id)}>Delete</button></td>
+                    onClick={()=>delteStudent(students.student.id)}>Supprimer</button></td>
                     </tr>)
                 })}
                 </tbody>

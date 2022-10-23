@@ -63,12 +63,16 @@ function RDN(props) {
     <div>
       { (isLoadingData) ? <p className="mt-5 ml-5 text-warning">Loading data marks...</p> :""}
     <hr/>
-    <Link to={`/RDN/semester/1/${props.year}/${props.id}`} className="btn btn-warning">
-      Semestre 1
-    </Link>
-    <Link to={`/RDN/semester/2/${props.year}/${props.id}`} className="btn btn-warning ml-5">
-      Semestre 2
-    </Link>
+    <div className="row">
+        <div className="col-3"></div>
+        <Link to={`/RDN/semester/1/${props.year}/${props.id}`} className="btn btn-dark col-3">
+        Semestre 1
+        </Link>
+        <Link to={`/RDN/semester/2/${props.year}/${props.id}`} className="btn btn-dark col-3">
+        Semestre 2
+        </Link>
+    </div>
+    
     <div   ref={componentRef} className='container border mt-4'>
             <img src={logo} alt="Logo" height={170+"px"}/>
             {/** Info perso*/}
@@ -175,8 +179,8 @@ function RDN(props) {
                 <div className="col-2"></div>
             </div>
     </div>
-<hr/>
-        <div className="row mb-5">
+
+        <div className="row mb-5 mt-4">
           <div className="col-4"></div>
       <button onClick={printData} className="btn btn-dark text-center col-4 mb-5"> Télécharger en tant que pdf</button>  
       </div>

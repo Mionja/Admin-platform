@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import RDN from "./RDN";
 import loading from './../../assets/loading.gif';
+import photo from './../../assets/photo.jpg';
+import email from './../../assets/email.png';
 
 
 function DetailStudent() {
@@ -54,30 +56,40 @@ function DetailStudent() {
             setTimeout(() => {
               setData(res.data);
               setIsLoading(false);
-            }, 3000);
+            }, 1000);
         })
     }, [])
   return (
     <div>
-            <Link to={'/student'}
-            className="mb-2 btn btn-sm btn-dark">List student</Link>
-      <h1>Detail sur l'étudiant:</h1>
-      { (isLoading) ? <img src={loading} className="ml-5"/> : 
-        <>
-                <p>Nom: {data.student.name}</p>
-                <p>Email : {data.student.email}</p>
-                <p>Age : {data.student.age}</p>
-                <p>Genre : 
-                  { data.student.gender ==='M'? "Masculin": "Feminin" }
-                </p>
-        </>
-      }
+        <div className="container border mt-3" style={{border:1+'px solid black', borderRadius:15+'px', backgroundColor:'gray'}}>
+          { (isLoading) ? <img src={loading} className="ml-5"/> : 
+              <div className="media-body mt-3">
+                <div className="row">
+                  <img src={photo} alt="photo" class="mr-3 mt-3 rounded-circle col-5"
+                  style={{width:150+'px'}}/>
+                  <span className="col-1"></span>
+                  <h2 className="col-5 mt-5">{data.student.name}</h2>
+                </div>
+
+                <div className="row mt-5 mb-3">
+                <div className="col"></div>
+                    <div className="col">
+                      <img src={email} alt="email photo" 
+                      className="mr-2"/>
+                      {data.student.email}
+                      </div>
+                    <div className="col">Age: {data.student.age}</div>
+                    <div className="col">Genre: { data.student.gender ==='M'? "Masculin": "Feminin" }</div>
+                </div>
+              </div>
+          }
+        </div>
+
 
     {/* Choosing the Academic year  */}
       <div className='row mt-5'>
-            <div class="col-4"></div>
-            <div className="col-8">
-            <ul class="pagination">
+            <div class="col-4 mr-5"></div>
+            <ul class="pagination col-6">
                         <li class="page-item"><a class="page-link" href="#"
                         onClick={Previous}>Previous</a></li> {
                             (year === 2019) ? 
@@ -118,7 +130,7 @@ function DetailStudent() {
                         <li class="page-item"><a class="page-link" href="#"
                         onClick={Next}>Next</a></li>
             </ul>
-            </div>
+            <div class="col-3"></div>
       </div>
       <RDN year={year} id={id}/>
     </div>

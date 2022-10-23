@@ -41,11 +41,11 @@ function MarksExcel() {
                         <div className='col-4'>
                             <input type="file" onChange={handleChange} />
                         </div>
-                    </div>
-                    <div className='row'>
-                    <div className='col-3'></div>
-                    <button classname="btn btn-dark mt-3" type="submit">Importer</button>
-                    </div>
+                      </div>
+                      <div className='row mt-3'>
+                        <div className='col-5'></div>
+                        <button className='col-3 btn btn-primary' type="submit">Importer</button>
+                      </div>
                 </form>
             </div>
         </div>

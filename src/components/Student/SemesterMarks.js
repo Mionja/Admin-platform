@@ -1,7 +1,7 @@
 import React , {useState, useEffect, useRef} from "react"
 import { useReactToPrint } from "react-to-print";
 import axios from 'axios'
-import {  useParams } from 'react-router-dom'
+import {  useParams, Link } from 'react-router-dom'
 import logo from './../../assets/G_logo_esti.jpg'
 
 
@@ -61,11 +61,19 @@ function SemesterMarks() {
 console.log('grades', grades);
   return (
     <div>
+        
+        <div className="row">
+            <div className="col-5"></div>
+            {
+                (isLoadingStudent)? <p>Loading...</p>:
+            <Link to={`/detailStudent/${student.student.id}`} className='col-2 btn btn-sm btn-dark'>Revenir</Link>
+            }
+        </div>
+
         {/** 
          * We put bellow the data to be downloaded
          * Eto no atao le zavatra mitovy am RDN reny
         */}
-
        <div   ref={componentRef} className='container border mt-4'>
             <img src={logo} alt="Logo" height={170+"px"}/>
             {/** Info perso*/}

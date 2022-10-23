@@ -24,11 +24,11 @@ import AddTeacher from './components/Teacher/AddTeacher';
 import EditTeacher from './components/Teacher/EditTeacher';
 import DetailTeacher from './components/Teacher/DetailTeacher';
 
-import Marks from './components/Mark/Marks';
+// import Marks from './components/Mark/Marks';
 import HeaderRetake_exam from './components/Retake_exam/Header';
 import SendNotification from './components/Retake_exam/SendNotification';
 import SemesterMarks from './components/Student/SemesterMarks';
-// import MarksExcel from './components/Mark/MarksExcel';
+import MarksExcel from './components/Mark/MarksExcel';
 
 export default function App() {
   
@@ -51,10 +51,10 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path="/addStudent" element={<AddStudent/>}/>      
             <Route path="/editStudent/:id" element={<EditStudent/>}/> 
             <Route path="/detailStudent/:id" element={<DetailStudent/>}/>    
-            <Route path="/mark" element={<Marks/>}/>     
+            {/* <Route path="/mark" element={<Marks/>}/>      */}
             <Route path="/addMark/:grade/:year" element={<AddMark/>}/>    
             <Route path="/RDN/semester/:semester/:year/:id" element={<SemesterMarks/>}/>     
-            {/* <Route path="/mark" element={<MarksExcel/>}/>     */}
+            <Route path="/mark" element={<MarksExcel/>}/>    
                    
           {/* Route resaka module*/}
             <Route path='/module' element={<ModuleHeader/>} />
