@@ -36,7 +36,7 @@ function SemesterMarks() {
             }, 1000);
         }),
 
-        axios.get(`http://localhost:8000/api/student/all-marks/${year}/${id}`)
+        axios.get(`http://localhost:8000/api/student/all-marks-by-semester/${year}/${id}/${semester}`)
         .then( res => {
             console.log('all-marks',res.data);
             setTimeout(() => {
@@ -118,8 +118,7 @@ console.log('grades', grades);
                     </thead>
                     <tbody>
                     {
-                        data.filter(data => (data.marks.semester === semester))
-                            .map(data=>{
+                        data.map(data=>{
                             return(
                                 <tr key={data.marks.id}>
                                 <td> <b className="text-dark"> {data.marks.module.code} </b></td>
