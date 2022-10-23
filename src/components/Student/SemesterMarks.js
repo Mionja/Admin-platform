@@ -57,6 +57,7 @@ function SemesterMarks() {
 
     ])
   }, []);
+  
 console.log('grades', grades);
   return (
     <div>
@@ -117,25 +118,21 @@ console.log('grades', grades);
                     </thead>
                     <tbody>
                     {
-                        data.map(data=>{
+                        data.filter(data => (data.marks.semester === semester))
+                            .map(data=>{
                             return(
-                            <tr key={data.marks.id}>
-                                {
-                                 (data.marks.semester !== semester)?'':
-                                <>
-                                    <td> <b className="text-dark"> {data.marks.module.code} </b></td>
-                                    <td>{data.marks.module.name}</td>
-                                    <td>{data.marks.module.credits}</td>
-                                    <td>{data.marks.score}</td>
-                                    <td>{data.marks.module.credits * data.marks.score}</td>
-                                    {  
-                                        (data.marks.score < 10) ? 
-                                        <td>à rattrapper</td> 
-                                        : ''
-                                    }
-                                </>
+                                <tr key={data.marks.id}>
+                                <td> <b className="text-dark"> {data.marks.module.code} </b></td>
+                                <td>{data.marks.module.name}</td>
+                                <td>{data.marks.module.credits}</td>
+                                <td>{data.marks.score}</td>
+                                <td>{data.marks.module.credits * data.marks.score}</td>
+                                {  
+                                    (data.marks.score < 10) ? 
+                                    <td>à rattrapper</td> 
+                                    : ''
                                 }
-                            </tr>
+                                </tr>
                             )
                         }) 
                     }
@@ -155,6 +152,7 @@ console.log('grades', grades);
                     </tbody>
                 </table>
             </div>
+            
             {/** Footer*/}
             <div className="row mt-2 mb-lg-5">
                 <div className="col-9"></div>
