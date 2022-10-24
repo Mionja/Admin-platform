@@ -94,7 +94,7 @@ console.log('grades', grades);
                                     <>
                                     { (grade['school_year'] === year) ? '':
                                        <> Inscrit en: {grade['name']}
-                                        <br/>Groupe {grade['group']}
+                                        <br/>Groupe {grade['group']}  <br/>
                                         </>
                                     }
                                     </>

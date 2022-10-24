@@ -108,7 +108,7 @@ function Marks(props) {
                                 </Link>
                             </td>
                             <td className='text-center'>{data.data.student.email}</td>
-                            <td className='text-center'>{data.data.student.gender}</td>
+                            <td className='text-center'>{ data.data.student.gender ==='M'? "Masculin": "Feminin" }</td>
                             <td className='text-center'>{data.data.group}</td>
                             <td className='text-center'><code style={{color: 'red'}}>{data.data.average_point.data}</code></td>
                             <td className='text-center'>-{data.data.retake_module}</td>

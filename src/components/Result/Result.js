@@ -92,7 +92,7 @@ function Result(props) {
                     <h2 className="bg-dark text-light text-center mt-5">IDEV</h2>
                   }
 
-                  <table class="table table-hover mt-3 mb-5">
+                  <table class="table table-bordered table-hover mt-3 mb-5">
                       <thead>
                           <tr>
                               <th className='text-center'>Nom</th>

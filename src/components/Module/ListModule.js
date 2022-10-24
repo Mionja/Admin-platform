@@ -21,7 +21,7 @@ function ListModule(props) {
 
 return (
    
-      <div>
+      <div className="container mb-5">
             <h1 align = 'center' className="mt-3 mb-5">Les listes de module des {props.grade}</h1>
             <Link to={`/copyModules/${props.grade}/${props.year}`}>
               <button className="btn btn-warning float-right">Copier tous ces modules</button>
@@ -64,6 +64,7 @@ return (
                 })}
                 </tbody>
                 </table>
+                <div className="mt-5 mb-5">.</div>
     </div>
   )
 }

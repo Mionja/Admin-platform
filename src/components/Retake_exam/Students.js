@@ -26,6 +26,7 @@ function Students(props) {
           <th>Note(/20)</th>
           <th>Semestre</th>
           <th>Année</th>
+          <th></th>
         </thead>
         <tbody>
         {
@@ -44,6 +45,9 @@ function Students(props) {
               <td>{item.marks.score}</td>
               <td>{item.marks.semester}</td>
               <td>{item.marks.year}</td>
+              <td>
+                <button className='btn btn-dark'>Rattrapage</button>
+              </td>
             </tr>
             </>
           )
