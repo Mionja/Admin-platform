@@ -105,7 +105,9 @@ console.log()
                         <td>Email</td>
                         <td>Classe</td>
                         <td>Groupe</td>
+                        <td>Module</td>
                         <td>Note</td>
+                        <td>Année scolaire</td>
                         <td>Semestre</td>
                       </tr>
                     </thead>

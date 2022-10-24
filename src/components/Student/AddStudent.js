@@ -197,9 +197,9 @@ const AddStudent = () => {
           <button type='submit' value="envoyer"  className="btn btn-primary ">
            Enregistrer
            </button>
-           <Link to={'/student'}>
-            <p className='text-center mt-2' >Revenir dans liste etudiant? <a href="#">Retour</a></p>
-           </Link>
+           <Link to={'/import/students'}>
+                <p className='text-center mt-2' >Importer fichier excel? <a href="#">Oui</a></p>
+              </Link>
            </div>
                    
                 </form>

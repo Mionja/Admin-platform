@@ -17,7 +17,7 @@ function Modules() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [hour, setHour] = useState(9);
-  const [year, setYear] = useState(2022);
+  const [year, setYear] = useState(2021);
   const [category, setCategory] = useState('Informatique programmation');
   const [credits, setCredits] = useState(1);
 
@@ -163,7 +163,7 @@ return (
                   required  
                   type="number"
                    name="year"
-                   min={2022}
+                   min={2021}
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                   className="form-control"  ></input>
