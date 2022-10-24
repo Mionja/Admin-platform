@@ -29,7 +29,8 @@ import DetailTeacher from './components/Teacher/DetailTeacher';
 import HeaderRetake_exam from './components/Retake_exam/Header';
 import SendNotification from './components/Retake_exam/SendNotification';
 import SemesterMarks from './components/Student/SemesterMarks';
-import MarksExcel from './components/Mark/MarksExcel';
+// import MarksExcel from './components/Mark/MarksExcel';
+import Import from './components/Mark/Import';
 import PassStudent from './components/Student/PassStudent';
 
 
@@ -59,7 +60,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             {/* <Route path="/mark" element={<Marks/>}/>      */}
             <Route path="/addMark/:grade/:year" element={<AddMark/>}/>    
             <Route path="/RDN/semester/:semester/:year/:id" element={<SemesterMarks/>}/>     
-            <Route path="/mark" element={<MarksExcel/>}/>  
+            {/* <Route path="/mark" element={<MarksExcel/>}/>   */}
+            <Route path="/mark" element={<Import/>}/>  
             <Route path="/result" element={<ResultHeader/>}/>    
             <Route path="/pass/:grade/:year" element={<PassStudent/>}/>     
 

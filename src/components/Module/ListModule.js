@@ -1,12 +1,28 @@
 import React , {useState,useEffect} from "react";
-import axios from 'axios';
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom'
 
 function ListModule(props) {
+  const navigate = useNavigate()
   let [data,setData] = useState ([]);
 
-  const deleteModule = (id)=>{
-    //here, we don't delete the module but put it in the historic
+  const deleteModule= (id) => {
+    // e.preventDefault()
+    const res = axios({
+        method: 'DELETE',
+        url: `http://localhost:8000/module/${id}`,        
+      })
+      console.log(res.status);
+      if (res.status === 200) {
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Un module supprimé',
+          showConfirmButton: true,
+        })
+        navigate('/module')
+      }
   }
 
   useEffect (() =>{
@@ -57,7 +73,7 @@ return (
                       {/* <a href="/editModule/{data.module.id}" className='btn btn-warning ml-5'>Edit</a> */}
                       </td>
                       <td>
-                      <a href='#' onClick={()=>deleteModule(data.module.id)}  className='text-danger'>Supprimer</a>
+                      <a href='#delete' onClick={()=>deleteModule(data.module.id)}  className='text-danger'>Supprimer</a>
                       </td>
                     </tr>
                     )
