@@ -71,9 +71,9 @@ else if (gender !== '') {
                     (isLoadingGraph) ? <p>Loading...</p> : 
 
                     (graph.message === 'Fail')?'': 
-                    <button className="btn btn-danger ml-5 h6">
+                    <Link to={`/pass/${props.grade}/${props.school_year}`} className="btn btn-danger ml-5 h6">
                         Afindra classe
-                    </button>
+                    </Link>
                 }
             </h2>
             <hr/>

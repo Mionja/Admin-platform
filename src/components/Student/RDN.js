@@ -38,10 +38,11 @@ function RDN(props) {
           .then( res => {
               console.log(res.data);
               setTimeout(() => {
+                setIsLoadingMoyenne(true)
                 setMoyenne(res.data);
                 console.log(moyenne);
                 setIsLoadingMoyenne(false);
-              }, 1000);
+              }, 2000);
           }),
 
           axios.get(`http://localhost:8000/api/student/${props.id}`)

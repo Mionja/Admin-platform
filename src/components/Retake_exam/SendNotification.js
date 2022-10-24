@@ -9,24 +9,24 @@ function SendNotification() {
     const {module} = useParams();
     let [data, setData] = useState([])
     let [body, setBody] = useState('')
-    let[isLoading, setIsLoading] = useState(true);
-
+    let[isLoading, setIsLoading] = useState(true)
+    console.log(module);
     useEffect  (() =>{
             fetch(`http://localhost:8000/api/module/${module}`).then((res)=>{
                 return res.json()
             }).then((data)=>{
             setTimeout(() => {
-                // console.log(data);
-                setData(data);
-                setIsLoading(false);
-            }, 2000);
+                console.log(data)
+                setData(data)
+                setIsLoading(false)
+            }, 2000)
             })
     },[]);
     
     const sendNotification = async(e)=>{
         e.preventDefault()
-      const details = { module, body };
-      console.log('details',details);
+      const details = { module, body }
+      console.log('details',details)
       const res = await axios({
         method: 'POST',
         url: `http://localhost:8000/api/send-email`,

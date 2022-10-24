@@ -30,12 +30,16 @@ import HeaderRetake_exam from './components/Retake_exam/Header';
 import SendNotification from './components/Retake_exam/SendNotification';
 import SemesterMarks from './components/Student/SemesterMarks';
 import MarksExcel from './components/Mark/MarksExcel';
+import PassStudent from './components/Student/PassStudent';
+
 
 export default function App() {
   
 axios.defaults.baseURL = "http://localhost:8000/";
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.put['Accept'] = 'application/json';
+axios.defaults.headers.put['Content-Type'] = 'application/json';
 axios.defaults.headers.delete['Accept'] = 'application/json';
 axios.defaults.headers.delete['Content-Type'] = 'application/json';
 
@@ -57,7 +61,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path="/RDN/semester/:semester/:year/:id" element={<SemesterMarks/>}/>     
             <Route path="/mark" element={<MarksExcel/>}/>  
             <Route path="/result" element={<ResultHeader/>}/>    
-                   
+            <Route path="/pass/:grade/:year" element={<PassStudent/>}/>     
+
           {/* Route resaka module*/}
             <Route path='/module' element={<ModuleHeader/>} />
             <Route path='/detailModule/:id' element={<DetailModule/>} />
