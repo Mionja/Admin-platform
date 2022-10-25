@@ -22,6 +22,12 @@ function RDN(props) {
     let [isLoadingData, setIsLoadingData] = useState(true);
     let [isLoadingMoyenne, setIsLoadingMoyenne] = useState(true);
     let [isLoadingStudent, setIsLoadingStudent] = useState(true);
+    const day = new Date().getDate()
+    const month = new Date().getMonth()
+    const year = new Date().getFullYear()
+    const months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+  
+    console.log(day , months[month], year);
 
     useEffect(() => {
       axios.all([
@@ -165,7 +171,7 @@ function RDN(props) {
             <div className="row mt-2 mb-lg-5">
                 <div className="col-9"></div>
                 <div className="col-3">
-                    Antananarivo, le 7 Juillet 2022
+                    Antananarivo, le {day}  {months[month]} {year}
                     <br/> Le directeur des Etudes
                 </div>
             </div>

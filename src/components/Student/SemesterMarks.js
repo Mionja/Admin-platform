@@ -10,6 +10,13 @@ function SemesterMarks() {
     const {year} = useParams('year');
     const {semester} = useParams('semester');
 
+    const day = new Date().getDate()
+    const month = new Date().getMonth()
+    const year_now = new Date().getFullYear()
+    const months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+  
+    console.log(day , months[month], year_now);
+
     const componentRef = useRef();
     const printData = useReactToPrint({
       content: () => componentRef.current,
@@ -74,7 +81,7 @@ console.log('grades', grades);
          * We put bellow the data to be downloaded
          * Eto no atao le zavatra mitovy am RDN reny
         */}
-       <div   ref={componentRef} className='container border mt-4'>
+       <div ref={componentRef} className='container border mt-4'>
             <img src={logo} alt="Logo" height={170+"px"}/>
             {/** Info perso*/}
             {
@@ -164,7 +171,7 @@ console.log('grades', grades);
             <div className="row mt-2 mb-lg-5">
                 <div className="col-9"></div>
                 <div className="col-3">
-                    Antananarivo, le 7 Juillet 2022
+                Antananarivo, le {day}  {months[month]} {year_now}
                     <br/> Le directeur des Etudes
                 </div>
             </div>

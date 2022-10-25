@@ -7,13 +7,13 @@ function ListModule(props) {
   const navigate = useNavigate()
   let [data,setData] = useState ([]);
 
-  const deleteModule= (id) => {
+  const deleteModule= async(id) => {
     // e.preventDefault()
-    const res = axios({
+    const res = await axios({
         method: 'DELETE',
         url: `http://localhost:8000/module/${id}`,        
       })
-      console.log(res.status);
+      console.log('status',res.status);
       if (res.status === 200) {
         console.log(res);
         Swal.fire({
@@ -57,7 +57,7 @@ return (
             </thead>
             <tbody>
               
-                    {data.map((data)=>{
+                  {data.map((data)=>{
                     return( 
                     <tr key={data.module.id}>
                     <td>
@@ -77,7 +77,7 @@ return (
                       </td>
                     </tr>
                     )
-                })}
+                  })}
                 </tbody>
                 </table>
                 <div className="mt-5 mb-5">.</div>

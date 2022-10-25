@@ -17,9 +17,10 @@ function PassStudent() {
         e.preventDefault();
   
         const data = { grade, year, group};
-        console.log(data);
+        console.log('data',data);
   
         const res = await axios({
+            ContentType:'application/json',
             method: 'POST',
             url: `http://localhost:8000/api/student/pass/${id}`,
             data: data,

@@ -1,9 +1,50 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import axios from 'axios'
 
 
 function Students(props) {
   let [data, setData] = useState([]);
+  const school_year = props.year
+  const module = props.module
+
+  const getMark = (id, semester)=>{
+    Swal.fire({
+      title :'Insertion de la nouvelle note',
+      input:'number',
+      minValue:0,
+      max:20,
+      showConfirmButton:true,
+      showCancelButton:true
+    }).then((res)=>{
+        console.log(res.value);
+        console.log('id',id);
+        var score = res.value
+        console.log('score',score);
+        console.log('semester',semester);
+        const details = { school_year, module, semester, score }
+        // const details = new FormData()
+        // details.append('school_year', props.year)
+        // details.append('module',props.module)
+        // details.append('score',score)
+        console.log(details);
+        const aaa = axios({
+          method: 'POST',
+          url: `http://localhost:8000/api/student/retake_exam/${id}`,
+          data: details 
+        })
+        console.log('aaa.data',aaa.data);
+        if (aaa.status === 200) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Notification envoyée',
+            showConfirmButton: true,
+          })
+        }
+    })
+  }
+ 
   useEffect(() =>{
     fetch(`http://localhost:8000/api/student/list-retaking-exam/${props.module}/${props.year}`).then((res)=>{
         return res.json()
@@ -16,6 +57,7 @@ function Students(props) {
   if (! props.module) {
     return <h1 className='text-danger text-center mt-5'>Veuillez choisir une module</h1>
   }
+  
   return (
     <div>
       <h2>Il y a {data.length} étudiant(s) qui a/ont un rattrapage à faire avec ce module</h2>
@@ -46,7 +88,7 @@ function Students(props) {
               <td>{item.marks.semester}</td>
               <td>{item.marks.year}</td>
               <td>
-                <button className='btn btn-dark'>Rattrapage</button>
+                <button className='btn btn-dark' onClick={()=>getMark(item.marks.students.id, item.marks.semester)}>Rattrapage</button>
               </td>
             </tr>
             </>

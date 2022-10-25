@@ -37,6 +37,7 @@ function EditModule() {
     console.log('year',year.current.value);
     console.log('credits',credits.current.value);
     console.log('category',category.current.value);
+
     const formData = new FormData()
     formData.append('name',name.current.value);
     formData.append('code',c.current.value + ode.current.value);
