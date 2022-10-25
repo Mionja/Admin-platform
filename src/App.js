@@ -33,6 +33,7 @@ import SemesterMarks from './components/Student/SemesterMarks';
 // import MarksExcel from './components/Mark/MarksExcel';
 import Import from './components/Mark/Import';
 import PassStudent from './components/Student/PassStudent';
+import SemesterResult from './components/Result/SemesterResult';
 
 
 export default function App() {
@@ -65,8 +66,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
             <Route path="/mark" element={<Import/>}/>  
             <Route path="/result" element={<ResultHeader/>}/>    
             <Route path="/pass/:grade/:year" element={<PassStudent/>}/>   
-            <Route path="/import/students" element={<ImportStudent/>}/>    
-
+            <Route path="/import/students" element={<ImportStudent/>}/>   
+            <Route path="/result/semester/:semester/:year/:grade" element={<SemesterResult/>}/>    
 
           {/* Route resaka module*/}
             <Route path='/module' element={<ModuleHeader/>} />

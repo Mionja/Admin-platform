@@ -1,58 +1,71 @@
-import React, {useState, useEffect} from "react";
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect,useRef} from "react";
+import {Link, useParams} from 'react-router-dom'
 import axios from 'axios';
+import { useReactToPrint } from "react-to-print";
+import logo from './../../assets/G_logo_esti.jpg'
 
+function SemesterResult() {
+    const {grade} = useParams('grade')
+    const {year} = useParams('year')
+    const {semester} = useParams('semester')
+    
+    
+    const componentRef1 = useRef();
+    const printData1 = useReactToPrint({
+      content: () => componentRef1.current,
+      documentTitle: "test",
+      onafterprint: () => alert("print success"),
+    });
 
-function Result(props) {
-  let [data,setData] = useState ([]);
-  if (props.grade === 'L1') {
-    var G1 = data;
-    var G2 = data;
-  
-    G1 = data.filter(data => ( data.data.group === 'G1'));
-    G2 = data.filter(data => ( data.data.group === 'G2'));
-  }
-  else{
-    var RSI = data;
-    var IDEV = data;
-  
-    RSI = data.filter(data => ( data.data.group === 'RSI'));
-    IDEV = data.filter(data => ( data.data.group === 'IDEV'));
-  }
+    const componentRef2 = useRef();
+    const printData2 = useReactToPrint({
+      content: () => componentRef2.current,
+      documentTitle: "test",
+      onafterprint: () => alert("print success"),
+    });
 
-  useEffect(() => {
-      axios.get (`http://localhost:8000/api/student/average-point/${props.grade}/${props.year}`)
+    let [data,setData] = useState ([]);
+    if (grade === 'L1') {
+        var G1 = data;
+        var G2 = data;
+    
+        G1 = data.filter(data => ( data.data.group === 'G1'));
+        G2 = data.filter(data => ( data.data.group === 'G2'));
+    }
+    else{
+        var RSI = data;
+        var IDEV = data;
+    
+        RSI = data.filter(data => ( data.data.group === 'RSI'));
+        IDEV = data.filter(data => ( data.data.group === 'IDEV'));
+    }
+
+    useEffect(() => {
+      axios.get (`http://localhost:8000/api/student/average-point-semester/${grade}/${year}/${semester}`)
       .then((res)=>{
           console.log('data',res.data);
           setData(res.data);
         })       
-}, [props.grade, props.year])   
+    }, [])   
 
 
   return (
     <div>
-        <div className="row mt-4">
-            <div className="col-3"></div>
-            <Link to={`/result/semester/1/${props.year}/${props.grade}`} className="btn btn-outline-dark col-3 mr-3">
-            Semestre 1
-            </Link>
-            <Link to={`/result/semester/2/${props.year}/${props.grade}`} className=" ml-3 btn btn-outline-dark col-3">
-            Semestre 2
-            </Link>
-        </div>
-        <hr/>
-      {
+        {
             (data.message === 'Fail') ? <p>Fail </p> :
             <div className='mt-5 mb-5'>
-              <div className="container">
-                  <b className='ml-3' style={{color: 'black'}}>
-                     Résultat des élèves en {props.grade} ({props.year - 1}-{props.year})
+              <div className="container" ref={componentRef1}>
+                <img src={logo} alt="logo of the school" height={130+'px'} className='mb-5'/>
+                <br/>
+                  <b className='ml-3 h4' style={{color: 'black'}}>
+                     RESULTAT SEMESTRE {semester} {grade}
+                     {
+                    (grade === 'L1') ? 
+                    <>G1</>:
+                    <>RSI</>
+                    }
                   </b>
-                  {
-                    (props.grade === 'L1') ? 
-                    <h2 className="bg-dark text-light text-center mt-2">Goupe 1</h2>:
-                    <h2 className="bg-dark text-light text-center mt-2">RSI</h2>
-                  }
+                  <span className="float-right h3">({year - 1}-{year})</span>
 
                   <table class="table table-bordered table-hover mt-3">
                       <thead>
@@ -64,7 +77,7 @@ function Result(props) {
                       </thead>
                       <tbody>
                       {
-                        (props.grade === 'L1') ? 
+                        (grade === 'L1') ? 
                         G1.map((data)=>{
                         return(
                             <tr key={data.data.student.id}>
@@ -95,13 +108,25 @@ function Result(props) {
 
                       </tbody>
                   </table>
+                    <p className="mt-5 mb-5">.</p>
+              </div>
+              <div className="row mb-5 mt-4">
+                <div className="col-4"></div>
+                <button onClick={printData1} className="btn btn-dark text-center col-4 mb-5"> Télécharger en tant que pdf</button>  
+              </div>
 
-                  {
-                    (props.grade === 'L1') ? 
-                    <h2 className="bg-dark text-light text-center mt-5">Goupe 2</h2>:
-                    <h2 className="bg-dark text-light text-center mt-5">IDEV</h2>
-                  }
-
+              <div className="container" ref={componentRef2}>
+                <img src={logo} alt="logo of the school" height={130+'px'} className='mb-5'/>
+                <br/>
+                  <b className='ml-3 h4 mt-5' style={{color: 'black'}}>
+                     RESULTAT SEMESTRE {semester} {grade}
+                     {
+                    (grade === 'L1') ? 
+                    <>G2</>:
+                    <>IDEV</>
+                    }
+                  </b>
+                  <span className="float-right h3">({year - 1}-{year})</span>
                   <table class="table table-bordered table-hover mt-3 mb-5">
                       <thead>
                           <tr>
@@ -112,7 +137,7 @@ function Result(props) {
                       </thead>
                       <tbody>
                       {
-                        (props.grade === 'L1') ? 
+                        (grade === 'L1') ? 
                         G2.map((data)=>{
                         return(
                             <tr key={data.data.student.id}>
@@ -143,12 +168,15 @@ function Result(props) {
 
                       </tbody>
                   </table>
- 
               </div>
+              <div className="row mb-5 mt-4">
+                <div className="col-4"></div>
+                <button onClick={printData2} className="btn btn-dark text-center col-4 mb-5"> Télécharger en tant que pdf</button>  
+                </div>
             </div>
       }
     </div>
   )
 }
 
-export default Result
+export default SemesterResult
