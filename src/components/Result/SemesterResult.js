@@ -86,7 +86,11 @@ function SemesterResult() {
                                         {data.data.student.name}
                                     </Link>
                                 </td>
-                                <td className='text-center'>{data.data.average_point.data}</td>
+                                {
+                                (data.data.average_point.data < 10) ? 
+                                <td className="text-danger text-center">{data.data.average_point.data}</td>
+                                : <td className='text-center'>{data.data.average_point.data}</td>
+                                }
                                 <td className='text-center'>{data.data.retake_module} - </td>
                             </tr>)
                         })
@@ -99,7 +103,11 @@ function SemesterResult() {
                                           {data.data.student.name}
                                       </Link>
                                   </td>
-                                  <td className='text-center'>{data.data.average_point.data}</td>
+                                  {
+                                (data.data.average_point.data < 10) ? 
+                                <td className="text-danger text-center">{data.data.average_point.data}</td>
+                                : <td className='text-center'>{data.data.average_point.data}</td>
+                                }
                                   <td className='text-center'>{data.data.retake_module} - </td>
                               </tr>)
                           })
@@ -146,7 +154,11 @@ function SemesterResult() {
                                         {data.data.student.name}
                                     </Link>
                                 </td>
-                                <td className='text-center'>{data.data.average_point.data}</td>
+                                {
+                                (data.data.average_point.data < 10) ? 
+                                <td className="text-danger text-center">{data.data.average_point.data}</td>
+                                : <td className='text-center'>{data.data.average_point.data}</td>
+                                }
                                 <td className='text-center'>{data.data.retake_module} - </td>
                             </tr>)
                         })
@@ -159,7 +171,11 @@ function SemesterResult() {
                                           {data.data.student.name}
                                       </Link>
                                   </td>
-                                  <td className='text-center'>{data.data.average_point.data}</td>
+                                  {
+                                (data.data.average_point.data < 10) ? 
+                                <td className="text-danger text-center">{data.data.average_point.data}</td>
+                                : <td className='text-center'>{data.data.average_point.data}</td>
+                                }
                                   <td className='text-center'>{data.data.retake_module} - </td>
                               </tr>)
                           })
@@ -172,7 +188,7 @@ function SemesterResult() {
               <div className="row mb-5 mt-4">
                 <div className="col-4"></div>
                 <button onClick={printData2} className="btn btn-dark text-center col-4 mb-5"> Télécharger en tant que pdf</button>  
-                </div>
+              </div>
             </div>
       }
     </div>
