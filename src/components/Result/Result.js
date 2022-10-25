@@ -8,9 +8,12 @@ function Result(props) {
   if (props.grade === 'L1') {
     var G1 = data;
     var G2 = data;
-  
+
     G1 = data.filter(data => ( data.data.group === 'G1'));
+    G1 = [...G1].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
+
     G2 = data.filter(data => ( data.data.group === 'G2'));
+    G2 = [...G2].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
   }
   else{
     var RSI = data;
@@ -73,7 +76,13 @@ function Result(props) {
                                         {data.data.student.name}
                                     </Link>
                                 </td>
-                                <td className='text-center'>{data.data.average_point.data}</td>
+                                <td className='text-center'>
+                                {
+                                    (data.data.average_point.data < 10) ?
+                                    <code style={{color: 'red'}}>{data.data.average_point.data}</code>
+                                    : data.data.average_point.data
+                                }
+                                </td>
                                 <td className='text-center'>{data.data.retake_module} - </td>
                             </tr>)
                         })
@@ -86,7 +95,13 @@ function Result(props) {
                                           {data.data.student.name}
                                       </Link>
                                   </td>
-                                  <td className='text-center'>{data.data.average_point.data}</td>
+                                  <td className='text-center'>
+                                  {
+                                    (data.data.average_point.data < 10) ?
+                                    <code style={{color: 'red'}}>{data.data.average_point.data}</code>
+                                    : data.data.average_point.data
+                                  } 
+                                   </td>
                                   <td className='text-center'>{data.data.retake_module} - </td>
                               </tr>)
                           })
@@ -121,7 +136,11 @@ function Result(props) {
                                         {data.data.student.name}
                                     </Link>
                                 </td>
-                                <td className='text-center'>{data.data.average_point.data}</td>
+                                <td className='text-center'>{
+                                    (data.data.average_point.data < 10) ?
+                                    <code style={{color: 'red'}}>{data.data.average_point.data}</code>
+                                    : data.data.average_point.data
+                                }</td>
                                 <td className='text-center'>{data.data.retake_module} - </td>
                             </tr>)
                         })
@@ -134,7 +153,11 @@ function Result(props) {
                                           {data.data.student.name}
                                       </Link>
                                   </td>
-                                  <td className='text-center'>{data.data.average_point.data}</td>
+                                  <td className='text-center'>{
+                                    (data.data.average_point.data < 10) ?
+                                    <code style={{color: 'red'}}>{data.data.average_point.data}</code>
+                                    : data.data.average_point.data
+                                }</td>
                                   <td className='text-center'>{data.data.retake_module} - </td>
                               </tr>)
                           })
