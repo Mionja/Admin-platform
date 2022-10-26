@@ -7,12 +7,12 @@
 function Marks(props) {
 
     let [data,setData] = useState ([]);
-    var sup10 = data;
-    var inf10 = data;
+    // var sup10 = data;
+    // var inf10 = data;
     var test = data;
     test = [...data].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
-    sup10 = data.filter(data => ( data.data.average_point.data >= 10));
-    inf10 = data.filter(data => ( data.data.average_point.data < 10));
+    // sup10 = data.filter(data => ( data.data.average_point.data >= 10));
+    // inf10 = data.filter(data => ( data.data.average_point.data < 10));
   
     let[ graph, setGraph ] = useState([]);
     let[isLoadingGraph, setIsLoadingGraph] = useState(true)
@@ -46,8 +46,9 @@ function Marks(props) {
             (isLoadingGraph)? <h2>Loading...</h2>:
             <ListMarks data={graph}/>
         }
+
         {
-            (data.message === 'Fail') ? <p>Fail </p> :
+            (graph.ap === 0)  ? <p className="mt-5 mb-5">.</p> :
             <div className='mt-4'>
 
             <div className='mt-5'>
@@ -92,7 +93,7 @@ function Marks(props) {
             </div>
             
             <p className="mt-5 mb-5"> .</p>
-            <div>
+            {/* <div>
                 <b className='ml-3' style={{color: 'black'}}>
                     Liste des etudiants qui ont eu la moyenne:
                 </b>
@@ -162,7 +163,7 @@ function Marks(props) {
                     })}
                     </tbody>
                 </table>
-            </div>
+            </div> */}
 
             </div>
         }

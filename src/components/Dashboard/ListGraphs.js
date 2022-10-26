@@ -33,14 +33,14 @@ let [NombreEtudiants, setNombreEtudiants] = useState({
 let [chartOptions, setChartOptions] = useState({});
 
   console.log('d', data);
-    console.log('test', data[0].LX2022);
+    console.log('test', data[2].LX2022);
     useEffect(() => {
       setComparisonPerYear({
           labels: [ "2019-2020", "2020-2021", "2021-2022"],
           datasets: [
               {
                   label: "Moyenne generale",   
-                  data: [12, 15, 16, data[0].LX2022.moyenne],
+                  data: [data[0].LX2020.moyenne, data[1].LX2021.moyenne, data[2].LX2022.moyenne],
               },
           
           ],
@@ -51,7 +51,7 @@ let [chartOptions, setChartOptions] = useState({});
           datasets: [
               {
                   label: "Nombre d'etudiants",   
-                  data: [4, 3, 1,data[0].LX2022.nombre_etudiant ],
+                  data: [ data[0].LX2020.nombre_etudiant, data[1].LX2021.nombre_etudiant, data[2].LX2022.nombre_etudiant ],
               },
           
           ],

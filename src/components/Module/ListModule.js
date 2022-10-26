@@ -43,7 +43,7 @@ return (
               <button className="btn btn-warning float-right">Copier tous ces modules</button>
             </Link>
             <Link to={'/addModule'}>
-              <button className="btn btn-info float-right mr-5">Ajouter une module</button>
+              <button className="btn btn-info float-right mr-5">Ajouter un module</button>
             </Link>
             <table class="table table-striped table-hover">
             <thead class="thead-dark">

@@ -48,7 +48,7 @@ function Modules() {
         title: 'Module Ajouter avec Succes',
         showConfirmButton: true,
       })
-      navigate('/module')
+      // navigate('/module')
       // alert("Etudiant Ajouter avec Succes");
     }
 
@@ -164,6 +164,7 @@ return (
                   type="number"
                    name="year"
                    min={2020}
+                   max={2030}
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                   className="form-control"  ></input>

@@ -78,23 +78,24 @@ else if (gender !== '') {
             </h2>
             <hr/>
 
-            <div  className="mt-3">
+            <div  className="mt-3 container">
                 <form>
-                    <label>Search </label> 
+                    <label className="mr-3 h5">Rechercher: </label> 
                     <select
+                    className="mr-2 h6"
                     value={group}
                     onChange={(e) => setGroup(e.target.value)}
                     >
-                    <option value="">--Group--</option>    
+                    <option value="" className="pt-2 pb-2 "> -- Groupe --</option>    
                     { (props.grade == 'L1') ?
                     <>
-                        <option value="G1">Group 1</option>
-                        <option value="G2">Group 2</option>
+                        <option value="G1">Groupe 1</option>
+                        <option value="G2">Groupe 2</option>
                     </>
                     :
                     <>
                         <option value="RSI">RSI</option>
-                        <option value="E-DEV">E-DEV</option>
+                        <option value="IDEV">IDEV</option>
                     </>
                     }
                     </select>
@@ -103,7 +104,7 @@ else if (gender !== '') {
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     >
-                    <option value="">--Gender--</option>
+                    <option value=""> -- Genre -- </option>
                     <option value="F">Fille</option>
                     <option value="M">Garçon</option>
                 
@@ -113,9 +114,9 @@ else if (gender !== '') {
                 <table className="table border ml-5 mt-5" style={{width:80+"%"}}>
                 <thead>
                 
-                        <th className="text-center">name</th>
-                        <th className="text-center">email</th>
-                        <th className="text-center">group</th>
+                        <th className="text-center">Nom</th>
+                        <th className="text-center">Email</th>
+                        <th className="text-center">Groupe</th>
                         <th className="text-center" colSpan={2}></th>
                 </thead>    
                 <tbody>

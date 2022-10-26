@@ -55,7 +55,7 @@ function Students(props) {
   },[props.module, props.year]);
  
   if (! props.module) {
-    return <h1 className='text-danger text-center mt-5'>Veuillez choisir une module</h1>
+    return <h1 className='text-danger text-center mt-5'>Veuillez choisir un module</h1>
   }
   
   return (
@@ -72,15 +72,15 @@ function Students(props) {
         </thead>
         <tbody>
         {
+          data && 
+          <Link to={`/sendNotification/${props.module}`}>
+          <button className='btn bg-danger'>Envoyer notification</button>
+          </Link>
+        }
+        {
         data.map((item)=>{
           return(
             <>
-            {
-              item.marks.year &&
-              <Link to={`/sendNotification/${props.module}`}>
-              <button className='btn bg-danger'>Envoyer notification</button>
-              </Link>
-            }
             <tr key={item.marks.id}>
               <td>{item.marks.students.name}</td>
               <td>{item.marks.students.email}</td>    
