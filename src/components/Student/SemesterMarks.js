@@ -94,22 +94,33 @@ console.log('grades', grades);
                         <br/>Année academique: {year-1}-{year}
                     </div>
                     <div className="col-4"></div>
-                    <div className="col-4">
+                    {/* <div className="col-4">
                     {
                         grades.map((grade)=>{
+                            if (grade.school_year === year) {
+                                return(
+                                    <> Inscrit en: {grade.name}<br/>
+                                        Groupe {grade.group}
+                                    </>
+                                )
+                            }
+                            else{
                                 return(
                                     <>
-                                    { (grade['school_year'] === year) ? '':
-                                       <> Inscrit en: {grade['name']}
-                                        <br/>Groupe {grade['group']}  <br/>
-                                        </>
-                                    }
+                                  ------ {grade.school_year} <br/>
+                                  Chosen year: {year} <br/>
+                                  {
+                                    (year === grade.school_year)? 'mitovy': 'tsy mitovy'
+                                  }
+                                  <br/>
+                                  {grade.name} <br/>
                                     </>
                                 )   
+                            }
                         })
                     }
                     
-                    </div>
+                    </div> */}
                  </div>
             }
 

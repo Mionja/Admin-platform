@@ -30,14 +30,20 @@ function SemesterResult() {
         var G2 = data;
     
         G1 = data.filter(data => ( data.data.group === 'G1'));
+        G1 = [...G1].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
+
         G2 = data.filter(data => ( data.data.group === 'G2'));
+        G2 = [...G2].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
     }
     else{
         var RSI = data;
         var IDEV = data;
     
         RSI = data.filter(data => ( data.data.group === 'RSI'));
+        RSI = [...RSI].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
+
         IDEV = data.filter(data => ( data.data.group === 'IDEV'));
+        IDEV = [...IDEV].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
     }
 
     useEffect(() => {

@@ -98,10 +98,12 @@ function RDN(props) {
                         grades.map((grade)=>{
                                 return(
                                     <>
-                                    { (grade['school_year'] === props.year) ? '':
-                                       <> Inscrit en: {grade['name']}
+                                    {
+                                        (grade.school_year === props.year) ? 
+                                        <> Inscrit en: {grade['name']}
                                         <br/>Groupe {grade['group']}
                                         </>
+                                        : ''
                                     }
                                     </>
                                 )   

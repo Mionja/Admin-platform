@@ -20,7 +20,10 @@ function Result(props) {
     var IDEV = data;
   
     RSI = data.filter(data => ( data.data.group === 'RSI'));
+    RSI = [...RSI].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
+
     IDEV = data.filter(data => ( data.data.group === 'IDEV'));
+    IDEV = [...IDEV].sort((a, b)=>(a.data.average_point.data > b.data.average_point.data ? -1:1))
   }
 
   useEffect(() => {
