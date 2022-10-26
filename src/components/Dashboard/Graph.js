@@ -30,6 +30,7 @@ function Graph(props) {
     useEffect(() => {
         axios.get (`http://localhost:8000/api/student/data/graph-general/${props.grade}`)
             .then((res)=>{
+                setIsLoadingGraph(true)    
             setTimeout(() => {
                 console.log('ee', res.data);
                 setGraph(res.data);
