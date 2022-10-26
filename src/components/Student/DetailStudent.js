@@ -84,7 +84,7 @@ function DetailStudent() {
               </div>
           }
         </div>
-
+<Link className="btn btn-primary" to={`/re-take_exam/${id}`}></Link>
 
     {/* Choosing the Academic year  */}
       <div className='row mt-5'>
