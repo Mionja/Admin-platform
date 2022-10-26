@@ -172,7 +172,7 @@ const AddStudent = () => {
 						<input className="input100" 
                   id="school_year" 
                   type="number"
-                  min={2018}
+                  min={2020}
                   max={2023}
                   value={school_year}
                   onChange={(e) => setSchool_year(e.target.value)}

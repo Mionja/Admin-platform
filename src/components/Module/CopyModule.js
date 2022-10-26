@@ -43,7 +43,7 @@ function CopyModule() {
                     type='number'
               required  
               value={body}
-              min={ year}
+              min={ 2020 }
               onChange={(e) => setBody(e.target.value)}
               className="form-control"  ></input>
                 

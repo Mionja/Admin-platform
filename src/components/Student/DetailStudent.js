@@ -16,7 +16,7 @@ function DetailStudent() {
     let [isLoading, setIsLoading] = useState(true);
 
     const Previous = ()=>{
-        if (year !==  2019) {
+        if (year !==  2020) {
             setYear(year-1)   
         }
         else{
@@ -91,15 +91,7 @@ function DetailStudent() {
             <div class="col-4 mr-5"></div>
             <ul class="pagination col-6">
                         <li class="page-item"><a class="page-link" href="#"
-                        onClick={Previous}>Previous</a></li> {
-                            (year === 2019) ? 
-                            <li className="page-item active" id='2019'><a className="page-link" href="#"
-                            onClick={() => setYear(2019)}>2019</a></li>
-                            :
-                            <li className="page-item" id='2019'><a className="page-link" href="#"
-                            onClick={() => setYear(2019)}>2019</a></li>
-                        }
-                        
+                        onClick={Previous}>Previous</a></li>
                         {
                             (year === 2020) ? 
                         <li className="page-item active"><a className="page-link" href="#"

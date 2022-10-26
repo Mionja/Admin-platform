@@ -5,7 +5,7 @@ function YearList(props) {
     let[year, setYear] = useState(2022);
     
     let Previous = ()=>{
-        if (year !==  2019) {
+        if (year !==  2020) {
             setYear(year-1)   
         }
         else{
@@ -29,15 +29,7 @@ function YearList(props) {
                 <div className='col-8'>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#"
-                        onClick={Previous}>Previous</a></li> {
-                            (year === 2019) ? 
-                            <li className="page-item active" id='2019'><a className="page-link" href="#"
-                            onClick={() => setYear(2019)}>2019</a></li>
-                            :
-                            <li className="page-item" id='2019'><a className="page-link" href="#"
-                            onClick={() => setYear(2019)}>2019</a></li>
-                        }
-                        
+                        onClick={Previous}>Previous</a></li> 
                         {
                             (year === 2020) ? 
                         <li className="page-item active"><a className="page-link" href="#"

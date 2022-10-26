@@ -105,7 +105,7 @@ console.log(module);
             required
             type="number"
             value={year}
-            min={2018}
+            min={2020}
             max={2023}
             onChange={(e) => setYear(e.target.value)}
             className="form-control"  ></input>

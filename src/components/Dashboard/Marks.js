@@ -51,7 +51,9 @@ function Marks(props) {
             <div className='mt-4'>
 
             <div className='mt-5'>
-                 <b  className='ml-3 h4 b' style={{color: 'black'}}>Liste de tous les étudiants avec leur moyenne:(Par ordre de mérite)</b>
+                 <b  className='ml-3 h4 b' style={{color: 'black'}}>
+                    Liste de tous les étudiants avec leur moyenne:(Par ordre de mérite)
+                 </b>
                 <table className="table table-hover mt-3">
                     <thead className='text-dark'>
                         <tr>
@@ -88,12 +90,12 @@ function Marks(props) {
                     </tbody>
                 </table>
             </div>
+            
             <p className="mt-5 mb-5"> .</p>
             <div>
                 <b className='ml-3' style={{color: 'black'}}>
                     Liste des etudiants qui ont eu la moyenne:
                 </b>
-
                 <table class="table table-hover mt-3">
                     <thead>
                         <tr>
@@ -128,7 +130,9 @@ function Marks(props) {
             </div>
 
             <div className='mt-5'>
-            <b  className='ml-3' style={{color: 'black'}}>Liste des etudiants qui n'ont pas eu la moyenne :</b>
+                <b  className='ml-3' style={{color: 'black'}}>
+                    Liste des etudiants qui n'ont pas eu la moyenne :
+                </b>
                 <table className="table table-hover mt-3">
                     <thead className='text-dark'>
                         <tr>

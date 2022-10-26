@@ -7,7 +7,7 @@ function Graph(props) {
     let[year, setYear] = useState(2022);
 
     let Previous = ()=>{
-        if (year !==  2019) {
+        if (year !==  2020) {
             setYear(year-1)   
         }
         else{
@@ -54,15 +54,8 @@ function Graph(props) {
             <div class="col-4"></div>
             <ul class="pagination div col-8">
                 <li class="page-item"><a class="page-link" href="#"
-                onClick={Previous}>Previous</a></li> {
-                    (year === 2019) ? 
-                    <li className="page-item active" id='2019'><a className="page-link" href="#"
-                    onClick={() => setYear(2019)}>2019</a></li>
-                    :
-                    <li className="page-item" id='2019'><a className="page-link" href="#"
-                    onClick={() => setYear(2019)}>2019</a></li>
-                }
-                
+                onClick={Previous}>Previous</a>
+                </li>
                 {
                     (year === 2020) ? 
                 <li className="page-item active"><a className="page-link" href="#"
