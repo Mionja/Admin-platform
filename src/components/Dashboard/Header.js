@@ -72,18 +72,18 @@ function Header() {
                 </div>
             </div>
             <div className=" col-3">
-                    <div className="small-box bg-warning">
-                        <div className="inner">
-                        <h3>M2</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <div className="icon">
-                        <i className="ion ion-person-add" />
-                        </div>
-                        <a href="#" className="small-box-footer"
-                        onClick={() => setGrade('M2')}
-                        >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
+                <div className="small-box bg-warning">
+                    <div className="inner">
+                    <h3>M2</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
                     </div>
+                    <div className="icon">
+                    <i className="ion ion-person-add" />
+                    </div>
+                    <a href="#" className="small-box-footer"
+                    onClick={() => setGrade('M2')}
+                    >Plus d'info<i className="fas fa-arrow-circle-right" /></a>
+                </div>
             </div>
         </div>
 

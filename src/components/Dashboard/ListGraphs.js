@@ -32,7 +32,7 @@ let [NombreEtudiants, setNombreEtudiants] = useState({
 
 let [chartOptions, setChartOptions] = useState({});
 
-  console.log('d', data);
+    console.log('d', data);
     console.log('test', data[2].LX2022);
     useEffect(() => {
       setComparisonPerYear({
