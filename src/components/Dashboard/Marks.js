@@ -27,6 +27,7 @@ function Marks(props) {
 
              axios.get (`http://localhost:8000/api/student/data/graph-specific/${props.grade}/${props.year}`)
             .then((res)=>{
+                setIsLoadingGraph(true)
                 setTimeout(() => {
                     console.log('graph', res.data);
                     setGraph(res.data);
@@ -43,7 +44,12 @@ function Marks(props) {
         <h3 className='mb-5 mt-3 text-center'>Etudiants en {props.grade} ({props.year - 1}-{props.year})</h3>    
         <hr/>
         {
-            (isLoadingGraph)? <h2>Loading...</h2>:
+            (isLoadingGraph)?  <p className="text-center h3">Attendez un instant...<div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </p>:
             <ListMarks data={graph}/>
         }
 

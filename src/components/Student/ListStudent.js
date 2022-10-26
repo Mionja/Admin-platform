@@ -8,6 +8,7 @@ function Student (props)
 
     let [graph, setGraph] = useState('')
     let[isLoadingGraph, setIsLoadingGraph] = useState(true)
+    let[isLoading, setIsLoading] = useState(true)
     const [data,setData] = useState ([]);
     const [group,setGroup] = useState ("");
     let [gender, setGender] = useState("");
@@ -26,7 +27,14 @@ function Student (props)
     useEffect (() =>{
         axios.all([
             axios.get (`http://localhost:8000/api/student/list/${props.grade}/${props.school_year}`)
-            .then((res)=>{setData(res.data)   }),
+            .then((res)=>{
+                setIsLoading(true)
+                setTimeout(() => 
+                {
+                    setData(res.data)   
+                    setIsLoading(false)    
+                }, 2000)
+            }),
 
             axios.get (`http://127.0.0.1:8000/api/student/general/average_point/${props.grade}/${props.school_year}`)
             .then((res)=>{
@@ -79,7 +87,16 @@ else if (gender !== '') {
             <hr/>
 
             <div  className="mt-3 container">
-                <form>
+                {
+                    (isLoading) ?  <p className="text-center h3">Attendez un instant...<div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+                </p>
+                :
+                <>
+                 <form>
                     <label className="mr-3 h5">Rechercher: </label> 
                     <select
                     className="mr-2 h6"
@@ -139,7 +156,9 @@ else if (gender !== '') {
                     </tr>)
                 })}
                 </tbody>
-                </table>  
+                </table>
+                </>
+                }  
             </div>
         </div>
     );

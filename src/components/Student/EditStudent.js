@@ -53,10 +53,21 @@ function EditStudent() {
 
         <div className="container-login100" >
           <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-{ (isLoading) ? <p className="text-center h3">Please, wait a moment...<img src={loading}/></p>: 
+{ (isLoading) ?  <p className="text-center h3">Attendez un instant...<div class="sk-cube-grid">
+                                    <div class="sk-cube sk-cube1"></div>
+                                    <div class="sk-cube sk-cube2"></div>
+                                    <div class="sk-cube sk-cube3"></div>
+                                    <div class="sk-cube sk-cube4"></div>
+                                    <div class="sk-cube sk-cube5"></div>
+                                    <div class="sk-cube sk-cube6"></div>
+                                    <div class="sk-cube sk-cube7"></div>
+                                    <div class="sk-cube sk-cube8"></div>
+                                    <div class="sk-cube sk-cube9"></div>
+                                    </div>
+                                </p>: 
             <form className="login100-form validate-form"  onSubmit={handleSubmit}>
               <span className="login100-form-title p-b-49">
-                Edit student
+                Modifier un étudiant
               </span>
     	<div className="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span className="label-input100" > Nom </span>

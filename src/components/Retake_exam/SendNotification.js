@@ -10,7 +10,8 @@ function SendNotification() {
     let [data, setData] = useState([])
     let [body, setBody] = useState('')
     let[isLoading, setIsLoading] = useState(true)
-    console.log(module);
+    // let [isSending, setIsSending] = useState(false)
+    // console.log(module);
     useEffect  (() =>{
             fetch(`http://localhost:8000/api/module/${module}`).then((res)=>{
                 return res.json()
@@ -22,7 +23,7 @@ function SendNotification() {
             }, 2000)
             })
     },[]);
-    
+    // console.log(isSending);
     const sendNotification = async(e)=>{
         e.preventDefault()
       const details = { module, body }
@@ -34,6 +35,7 @@ function SendNotification() {
       })
       console.log('res.data',res.data);
       if (res.status === 200) {
+        // setIsSending(false)
         Swal.fire({
           icon: 'success',
           title: 'Notification envoyée',
@@ -43,9 +45,29 @@ function SendNotification() {
     }
   return (
     <div class="limiter">
+
     <div class="container-login100" >
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-        { (isLoading) ? <p className="text-center h3">Please, wait a moment...<img src={loading}/></p>: 
+          {/* {
+            (isSending) ?  <p className="text-center h3">Attendez un instant...<div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </p>:''
+          } */}
+        { (isLoading) ?  <p className="text-center h3">Attendez un instant...<div class="sk-cube-grid">
+                                    <div class="sk-cube sk-cube1"></div>
+                                    <div class="sk-cube sk-cube2"></div>
+                                    <div class="sk-cube sk-cube3"></div>
+                                    <div class="sk-cube sk-cube4"></div>
+                                    <div class="sk-cube sk-cube5"></div>
+                                    <div class="sk-cube sk-cube6"></div>
+                                    <div class="sk-cube sk-cube7"></div>
+                                    <div class="sk-cube sk-cube8"></div>
+                                    <div class="sk-cube sk-cube9"></div>
+                                    </div>
+                                </p>: 
             <form class="login100-form validate-form"  onSubmit={sendNotification}>
                 <span class="login100-form-title p-b-49">
                     Rattrapage pour le module { data.module.code }
@@ -67,8 +89,9 @@ function SendNotification() {
                 </div>
         <div className='row'>
 
-        <button type='submit' value="envoyer"  className="btn btn-primary">
+        <button type='submit' value="envoyer" className="btn btn-primary">
         Envoyer
+        {/* onClick={setIsSending(true)} */}
        </button>
       
        </div>
@@ -78,7 +101,7 @@ function SendNotification() {
                 </div>
                     
             </form>
-}
+        }
         </div>
     </div>
 </div>

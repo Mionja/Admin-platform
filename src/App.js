@@ -21,6 +21,7 @@ import DetailModule from './components/Module/DetailModule';
 import AddModule from './components/Module/AddModule';
 import EditModule from './components/Module/EditModule';
 import CopyModule from './components/Module/CopyModule';
+import AddTable from './components/Module/Add';
 
 import ListTeacher from './components/Teacher/ListTeacher';
 import AddTeacher from './components/Teacher/AddTeacher';

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function Result(props) {
   let [data,setData] = useState ([]);
+  let [isLoading, setIsLoading] = useState(true)
   if (props.grade === 'L1') {
     var G1 = data;
     var G2 = data;
@@ -30,6 +31,7 @@ function Result(props) {
       axios.get (`http://localhost:8000/api/student/average-point/${props.grade}/${props.year}`)
       .then((res)=>{
           console.log('data',res.data);
+          setIsLoading(false)
           setData(res.data);
         })       
 }, [props.grade, props.year])   
@@ -51,6 +53,14 @@ function Result(props) {
             (data.message === 'Fail') ? <p>Fail </p> :
             <div className='mt-5 mb-5'>
               <div className="container">
+                {
+                    (isLoading) ? 
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>:
+                <>
                   <b className='ml-3' style={{color: 'black'}}>
                      Résultat des élèves en {props.grade} ({props.year - 1}-{props.year})
                   </b>
@@ -169,7 +179,8 @@ function Result(props) {
 
                       </tbody>
                   </table>
- 
+                  </>
+                }
               </div>
             </div>
       }

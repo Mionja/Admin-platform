@@ -62,7 +62,18 @@ function DetailStudent() {
   return (
     <div>
         <div className="container border mt-3" style={{border:1+'px solid black', borderRadius:15+'px', backgroundColor:'gray'}}>
-          { (isLoading) ? <img src={loading} className="ml-5"/> : 
+          { (isLoading) ?  <p className="text-center h3">Attendez un instant...<div class="sk-cube-grid">
+                                    <div class="sk-cube sk-cube1"></div>
+                                    <div class="sk-cube sk-cube2"></div>
+                                    <div class="sk-cube sk-cube3"></div>
+                                    <div class="sk-cube sk-cube4"></div>
+                                    <div class="sk-cube sk-cube5"></div>
+                                    <div class="sk-cube sk-cube6"></div>
+                                    <div class="sk-cube sk-cube7"></div>
+                                    <div class="sk-cube sk-cube8"></div>
+                                    <div class="sk-cube sk-cube9"></div>
+                                    </div>
+                                </p> : 
               <div className="media-body mt-3">
                 <div className="row">
                   <img src={photo} alt="photo" class="mr-3 mt-3 rounded-circle col-5"
@@ -84,7 +95,7 @@ function DetailStudent() {
               </div>
           }
         </div>
-<Link className="btn btn-primary" to={`/re-take_exam/${id}`}></Link>
+<Link className="btn btn-primary ml-5" to={`/re-take_exam/${id}`}>Liste de rattrapage que l'etudiant doit faire</Link>
 
     {/* Choosing the Academic year  */}
       <div className='row mt-5'>

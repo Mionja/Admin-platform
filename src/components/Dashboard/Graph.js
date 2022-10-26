@@ -45,14 +45,24 @@ function Graph(props) {
             { props.grade }
        </h1>
         {
-            (isLoadingGraph)? <h2>Loading...</h2>:
+            (isLoadingGraph)? <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+          </div>:
             <ListGraphs data={graph}/>
         }
        
         {/** Choose the year */}
         <div className='row'>
-            <div class="col-4"></div>
-            <ul class="pagination div col-8">
+            <div class="col-5"></div>
+            <ul class="pagination div col-7">
                 <li class="page-item"><a class="page-link" href="#"
                 onClick={Previous}>Previous</a>
                 </li>
