@@ -59,7 +59,7 @@ console.log()
       console.log(res.data);
       Swal.fire({
         icon: 'success',
-        title: 'Test add students success',
+        title: 'Success',
         showConfirmButton: true,
       })
     }

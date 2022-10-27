@@ -15,11 +15,11 @@ function Student (props)
     const history = useNavigate();
     let [year, setYear] = useState('LX'+props.school_year)
     console.log(year);
-    const delteStudent = (id)=>{
+    const quitStudent = (id)=>{
         fetch(`http://localhost:8000/student/${id}`, {
-            method: 'DELETE'
+            method: 'UPDATE'
         }).then(() => {
-            alert('Un etudiant supprimé')
+            alert('SUCCES')
             history.push('/student');
         }) 
     }
@@ -152,13 +152,14 @@ else if (gender !== '') {
                         className="btn btn-sm btn-warning">Modifier</Link>
                     </td>
                     <td><button className="btn btn-sm btn-danger"
-                    onClick={()=>delteStudent(students.student.id)}>Supprimer</button></td>
+                    onClick={()=>quitStudent(students.student.id)}>Abandon</button></td>
                     </tr>)
                 })}
                 </tbody>
                 </table>
                 </>
                 }  
+                <p className="mt-5 mb-5">.</p>
             </div>
         </div>
     );

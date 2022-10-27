@@ -15,7 +15,7 @@ function Header() {
                     <div className="small-box" style={{backgroundColor: "rgb(171, 177, 176)", borderColor:"red" }}>
                         <div className="inner">
                         <h3>L1</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Etudiants en Licence 1.</p>
                         </div>
                         <div className="icon">
                         <i className="ion ion-person-add" />
@@ -29,7 +29,7 @@ function Header() {
                     <div className="small-box" style={{backgroundColor: "rgb(84, 175, 170)"}}>
                         <div className="inner">
                         <h3>L2</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Etudiants en Licence 2.</p>
                         </div>
                         <div className="icon">
                         <i className="ion ion-person-add" />
@@ -43,7 +43,7 @@ function Header() {
                     <div className="small-box" style={{backgroundColor: "rgb(84, 98, 175)"}}>
                         <div className="inner">
                         <h3>L3</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Etudiants en Licence 3.</p>
                         </div>
                         <div className="icon">
                         <i className="ion ion-person-add" />
@@ -61,7 +61,7 @@ function Header() {
                 <div className="small-box" style={{backgroundColor: "rgb(175, 84, 89)"}}>
                     <div className="inner">
                     <h3>M1</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Etudiants en Master 1.</p>
                     </div>
                     <div className="icon">
                     <i className="ion ion-person-add" />
@@ -75,7 +75,7 @@ function Header() {
                 <div className="small-box bg-warning">
                     <div className="inner">
                     <h3>M2</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Etudiants en Master 2.</p>
                     </div>
                     <div className="icon">
                     <i className="ion ion-person-add" />

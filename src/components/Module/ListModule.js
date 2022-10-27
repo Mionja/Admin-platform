@@ -45,6 +45,7 @@ return (
             <Link to={'/addModule'}>
               <button className="btn btn-info float-right mr-5">Ajouter un module</button>
             </Link>
+            <h3>Il y a {data.length} modules</h3>
             <table class="table table-striped table-hover">
             <thead class="thead-dark">
             <tr>
