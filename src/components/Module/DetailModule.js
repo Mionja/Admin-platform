@@ -1,6 +1,5 @@
 import React , {useState,useEffect} from "react";
 import { useNavigate, useParams ,Link } from 'react-router-dom'
-import loading from './../../assets/loading.gif'
 import axios from 'axios'
 
 function DetailModule() {
